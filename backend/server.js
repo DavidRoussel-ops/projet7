@@ -7,8 +7,8 @@ const app = express();
 
 require('dotenv').config();
 
-const postRoutes = require('./routes/post');
-const userRoutes = require('./routes/user');
+const postRoutes = require('./route/post');
+const userRoutes = require('./route/user');
 let corsOption = {
     origin : "http://localhost:8080"
 }
