@@ -6,15 +6,35 @@ const instance = axios.create({
   baseURL : 'http://localhost:3000/users',
 })
 
+let user = localStorage.getItem('user');
+if (!user) {
+  user = {
+    userId : -1,
+    token : '',
+  };
+} else {
+  try {
+    user = JSON.parse(user);
+    instance.defaults.headers.common['Authorization'] = user.token;
+  } catch (err) {
+    user = {
+      userId : -1,
+      token : '',
+    };
+  }
+}
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     status : '',
-    user : {
-      userId : '',
-      token : '',
-    },
+    user : user,
+    userInfos : {
+      mail : '',
+      lname : '',
+      fname : '',
+    }
   },
   mutations: {
     setStatus : function (state, status) {
@@ -22,11 +42,11 @@ export default new Vuex.Store({
     },
     logUser : function (state, user) {
       instance.defaults.headers.common['Authorization'] = user.token;
-      //localStorage.setItem('user', JSON.stringify(user.userId[0]));
+      localStorage.setItem('user', JSON.stringify(user));
       state.user = user;
     },
     userInfos: function (state, userInfos) {
-      state.userInfos = userInfos;
+      state.user = userInfos;
     },
     /*userLocal : function () {
         localStorage.getItem(user)
@@ -70,20 +90,17 @@ export default new Vuex.Store({
       });
     },
     showUserById: ({ commit}) => {
-      instance.get('/',{
+      instance.get('/', {
         headers : {
-          'Content-Type' : 'application/json',
-          Authorization : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI4LCJpYXQiOjE2MzU0NDQ3OTEsImV4cCI6MTYzNTUzMTE5MX0.ct8pfIPHByPKxoVSuspGktEgsdat5mlx64usKKk50Ns`,
+          Authorization : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI4LCJpYXQiOjE2MzU1ODY3MTksImV4cCI6MTYzNTY3MzExOX0.iS-wUUcXZYyMImxnenECKodrIqGhek_NchMd9YRc67I'
         }
       })
-          .then(function () {
-            //commit('setStatus', 'userInfos');
-            //this.user = response.data;
-            commit('userInfos');
+          .then(function (response) {
+            commit('userInfos', response.data)
+                .catch(function (erreur) {
+                  console.log(erreur);
+                });
           })
-          .catch(function (erreur) {
-            console.log(erreur);
-          });
     }
   },
   modules: {
