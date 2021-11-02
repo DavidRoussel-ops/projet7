@@ -3,7 +3,7 @@
     <div class="conteneur-page">
       <div class="contenue">
         <img alt="log-left" class="font-left" src="../assets/icon-left-font-monochrome-black.png">
-        <p>Bonjour {{ lname }}</p>
+        <p>Bonjour {{ $store.state.fname }}</p>
         <p id="user"></p>
         <button @click="logout">Déconnexion</button>
       </div>
