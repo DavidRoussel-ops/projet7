@@ -1,20 +1,32 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import signLog from "@/components/signLog";
-import userLogin from "@/components/userLogin";
+import Home from '../components/Home'
+import SignUp from '../components/SignUp'
+import Login from '../components/Login'
+import Groupomania from '../components/Groupomania'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'signLog',
-    component: signLog
+    name: 'Home',
+    component: Home
   },
   {
-    path: '/id',
-    name: 'userLogin',
-    component: userLogin
+    path: '/sign',
+    name: 'Inscription',
+    component: SignUp
+  },
+  {
+    path: '/log',
+    name: 'Connexion',
+    component: Login
+  },
+  {
+    path: '/groupomania',
+    name: 'Groupomania',
+    component: Groupomania
   }
 ]
 
