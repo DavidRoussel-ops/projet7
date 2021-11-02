@@ -30,11 +30,9 @@ export default new Vuex.Store({
   state: {
     status : '',
     user : user,
-    userInfos : {
-      mail : '',
-      lname : '',
-      fname : '',
-    }
+    mail : '',
+    lname : '',
+    fname : '',
   },
   mutations: {
     setStatus : function (state, status) {
@@ -89,18 +87,22 @@ export default new Vuex.Store({
             });
       });
     },
-    showUserById: ({ commit}) => {
+    showUserById: ({ commit }) => {
       instance.get('/', {
         headers : {
           Authorization : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI4LCJpYXQiOjE2MzU1ODY3MTksImV4cCI6MTYzNTY3MzExOX0.iS-wUUcXZYyMImxnenECKodrIqGhek_NchMd9YRc67I'
         }
       })
           .then(function (response) {
-            commit('userInfos', response.data)
+            let user = JSON.parse(response.data);
+            this.state.mail = user[0].mail;
+            this.state.lname = user[0].lname;
+            this.state.fname = user[0].fname
+            commit('mail', 'lname', 'fname', user)
+          })
                 .catch(function (erreur) {
                   console.log(erreur);
-                });
-          })
+                })
     }
   },
   modules: {
