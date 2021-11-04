@@ -1,9 +1,22 @@
 <template>
     <div class="conteneur">
       <button @click="logout">Déconnexion</button>
-      <div v-for="posts in allPosts" v-bind:key="posts">
+      <div class="style-post" v-for="posts in allPosts" v-bind:key="posts">
         <p>{{ posts.com }}</p>
         <p>Un post de {{ posts.lname }} {{ posts.fname }}</p>
+        <button @click="getComment(posts.id)">Voir les commentaires</button>
+        <div v-if="postId === posts.id">
+          <div v-for="comments in allComments" v-bind:key="comments">
+            <p>{{ comments.content }}</p>
+          </div>
+        </div>
+        <div v-if="postId === posts.id">
+        <button class="btn-com" @click="addComment(posts.id)">Ajouter un commentaire</button>
+        <form v-if="addCom">
+          <input v-model="dataNewComment.content" type="text">
+          <button @click="sendComment(posts.id)">Envoyer</button>
+        </form>
+        </div>
       </div>
       <newpost/>
     </div>
@@ -11,28 +24,63 @@
 
 <script>
 import axios from "axios";
-import newpost from '../components/NewPost'
+import newpost from '../components/NewPost';
 
 export default {
   components : {
-    newpost : newpost
+    newpost : newpost,
   },
   data() {
     return {
+      addCom : false,
       comment : '',
       userId : '',
+      postId : '',
       dataGetUsers: {
         mail : '',
         lname : '',
         fname : '',
       },
+      dataNewComment : {
+        id : '',
+        content : '',
+        userId : '',
+      },
+      dataCommentSend : '',
       allPosts : [],
+      allComments : [],
     }
   },
   methods : {
     logout : function () {
       localStorage.clear();
       this.$router.push('/')
+    },
+    getComment(postId) {
+      this.postId = postId;
+      axios.get('http://localhost:3000/posts/' + postId + '/comments', {headers : {Authorization : 'Bearer ' + localStorage.token}})
+      .then(response => {
+        let comments = JSON.parse(response.data);
+        this.allComments = comments;
+      })
+    },
+    addComment() {
+      this.addCom = true;
+    },
+    sendComment(postId) {
+      this.dataNewComment.userId = this.userId;
+      this.dataCommentSend = JSON.stringify(this.dataNewComment)
+      axios.post('http://localhost:3000/posts/' + postId + '/comments', this.dataCommentSend ,{headers : {'Content-Type' : 'application/json', Authorization : 'Bearer ' + localStorage.token}})
+          .then(response => {
+            let dataComment = JSON.parse(response.data);
+            console.log(dataComment);
+            this.dataNewComment.content = '';
+            this.dataNewComment.userId = '';
+            window.location.reload();
+          })
+          .catch(error => {
+            console.log(error)
+          })
     }
   },
   mounted() {
@@ -55,3 +103,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.style-post{
+  border: 1px solid black;
+}
+</style>
