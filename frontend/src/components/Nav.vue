@@ -1,5 +1,6 @@
 <template>
   <div id="conteneurNav">
+    <button class="btn-nav" @click="home" >Accueil</button>
     <button class="btn-nav" @click="sign" >S'inscrire</button>
     <button class="btn-nav" @click="log">Se connecter</button>
   </div>
@@ -19,6 +20,9 @@ export default {
       },
     log : function () {
       this.$router.push('/log')
+    },
+    home : function () {
+      this.$router.push('/')
     }
     }
 }
