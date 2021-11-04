@@ -1,16 +1,23 @@
 <template>
+  <div>
+  <Nav/>
   <form>
     <input v-model="dataLog.mail" placeholder="e-mail"><br>
     <input v-model="dataLog.pass" placeholder="mots de passe"><br>
     <button @click="sendLog()">Connexion</button>
     <p v-if="goodLog">{{ message }}</p>
   </form>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Nav from "@/components/Nav";
 
 export default {
+  components : {
+    Nav : Nav,
+  },
   data(){
     return{
       dataLog : {
