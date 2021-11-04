@@ -1,4 +1,6 @@
 <template>
+  <div>
+  <Nav/>
   <form>
     <input v-model="dataSign.mail" placeholder="e-mail"><br>
     <input v-model="dataSign.pass" placeholder="mots de passe"><br>
@@ -7,12 +9,17 @@
     <button @click="sendSign()">Inscription</button>
     <p v-if="goodSign">{{ message }}</p>
   </form>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Nav from "@/components/Nav";
 
 export default {
+  components : {
+    Nav : Nav,
+  },
   data(){
     return{
       dataSign : {
