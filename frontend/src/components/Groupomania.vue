@@ -5,9 +5,12 @@
         <p>{{ posts.com }}</p>
         <p>Un post de {{ posts.lname }} {{ posts.fname }}</p>
         <button @click="getComment(posts.id)">Voir les commentaires</button>
+        <button @click="delPost(posts.id)">Supprimer</button>
         <div v-if="postId === posts.id">
           <div v-for="comments in allComments" v-bind:key="comments">
             <p>{{ comments.content }}</p>
+            <p>Commenté par {{ comments.lname }} {{ comments.fname }}</p>
+            <button @click="delCom(comments.id)">Supprimer</button>
           </div>
         </div>
         <div v-if="postId === posts.id">
@@ -81,6 +84,23 @@ export default {
           .catch(error => {
             console.log(error)
           })
+    },
+    delPost(postId) {
+      this.postId = postId;
+      axios.delete('http://localhost:3000/posts/' + postId, {headers : {Authorization : 'Bearer ' + localStorage.token}})
+      .then(response => {
+        let delData = JSON.parse(response.data);
+        console.log(delData);
+        window.location.reload();
+      })
+    },
+    delCom(commentId) {
+      axios.delete('http://localhost:3000/posts/comments' + commentId, {headers : {Authorization : 'Bearer ' + localStorage.token}})
+      .then(response => {
+        let delComData = JSON.parse(response.data);
+        console.log(delComData);
+        window.location.reload();
+      })
     }
   },
   mounted() {
