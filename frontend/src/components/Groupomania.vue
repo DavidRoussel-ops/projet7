@@ -2,10 +2,11 @@
     <div class="conteneur">
       <button @click="logout">Déconnexion</button>
       <div class="style-post" v-for="posts in allPosts" v-bind:key="posts">
+        <p>{{ posts.img }}</p>
         <p>{{ posts.com }}</p>
         <p>Un post de {{ posts.lname }} {{ posts.fname }}</p>
-        <button @click="getComment(posts.id)">Voir les commentaires</button>
         <button @click="delPost(posts.id)">Supprimer</button>
+        <button @click="getComment(posts.id)">Voir les commentaires</button>
         <div v-if="postId === posts.id">
           <div v-for="comments in allComments" v-bind:key="comments">
             <p>{{ comments.content }}</p>
@@ -36,7 +37,7 @@ export default {
   data() {
     return {
       addCom : false,
-      comment : '',
+      commentId : '',
       userId : '',
       postId : '',
       dataGetUsers: {
@@ -94,8 +95,9 @@ export default {
         window.location.reload();
       })
     },
-    delCom(commentId) {
-      axios.delete('http://localhost:3000/posts/comments' + commentId, {headers : {Authorization : 'Bearer ' + localStorage.token}})
+    delCom(comId) {
+      this.dataNewComment.id = comId;
+      axios.delete('http://localhost:3000/posts/comments/' + comId, {headers : {Authorization : 'Bearer ' + localStorage.token}})
       .then(response => {
         let delComData = JSON.parse(response.data);
         console.log(delComData);
