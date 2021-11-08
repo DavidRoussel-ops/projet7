@@ -6,8 +6,8 @@ const postCtrl = require('../controllers/post');
 
 try {
     router.get('/', postCtrl.allPost);
-    router.post('/', postCtrl.createPost);
-    router.put('/:id', userToken, postCtrl.updatePost);
+    router.post('/', multer, postCtrl.createPost);
+    router.put('/:id', userToken, multer ,postCtrl.updatePost);
     router.delete('/:id', userToken, postCtrl.deletePost);
 
     router.get('/:id/comments', postCtrl.comment);
