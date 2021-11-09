@@ -7,7 +7,6 @@
     <input v-model="dataSign.lname" placeholder="Nom"><br>
     <input v-model="dataSign.fname" placeholder="Prénom"><br>
     <button @click="sendSign()">Inscription</button>
-    <p v-if="goodSign">{{ message }}</p>
   </form>
   </div>
 </template>
@@ -29,8 +28,6 @@ export default {
         fname: '',
       },
       dataSignGood : '',
-      goodSign : false,
-      message : '',
     }
   },
   methods : {
@@ -39,13 +36,11 @@ export default {
       axios.post('http://localhost:3000/users/create', this.dataSignGood, {headers : {'Content-Type' : 'application/json'}})
       .then(response => {
         let sign = JSON.parse(response.data);
-        this.goodSign = true;
-        this.message = sign.message;
+        console.log(sign);
+        this.$router.push('/log')
       })
       .catch(error => {
         console.log(error);
-        this.goodSign = true;
-        this.message = error;
       })
     }
   }
