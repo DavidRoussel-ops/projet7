@@ -4,6 +4,7 @@ import Home from '../components/Home'
 import SignUp from '../components/SignUp'
 import Login from '../components/Login'
 import Groupomania from '../components/Groupomania'
+import Profil from '../components/Profil'
 
 Vue.use(VueRouter)
 
@@ -27,7 +28,12 @@ const routes = [
     path: '/groupomania',
     name: 'Groupomania',
     component: Groupomania
-  }
+  },
+  {
+    path: '/profil',
+    name: 'Profil',
+    component: Profil
+  },
 ]
 
 const router = new VueRouter({
