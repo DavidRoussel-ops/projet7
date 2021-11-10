@@ -17,7 +17,7 @@ exports.allPost = (req, res) => {
 exports.createPost = (req, res) => {
     let userId = req.body.userId;
     let com = req.body.com;
-    let img = req.body.img;
+    let img = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
     let sqlInserts = [userId, com, img];
     postModels.createPost(sqlInserts)
         .then((response) => {
