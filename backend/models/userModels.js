@@ -44,7 +44,7 @@ class userModels {
         })
     }
     showUser(sqlInserts) {
-        let selectSql = `SELECT mail, lname, fname FROM utilisateurs WHERE id = ?`;
+        let selectSql = `SELECT id, mail, pass, lname, fname, admin FROM utilisateurs WHERE id = ?`;
         selectSql = mysql.format(selectSql, sqlInserts);
         return new Promise((resolve, reject) => {
             db.query(selectSql, function (err, result) {
