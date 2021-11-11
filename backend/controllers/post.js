@@ -17,7 +17,8 @@ exports.allPost = (req, res) => {
 exports.createPost = (req, res) => {
     let userId = req.body.userId;
     let com = req.body.com;
-    let img = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
+    let img = req.body.img;
+    //let img = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
     let sqlInserts = [userId, com, img];
     postModels.createPost(sqlInserts)
         .then((response) => {
@@ -59,6 +60,22 @@ exports.deletePost = (req, res) => {
             console.log(error);
             res.status(400).json(JSON.stringify(error));
         })
+};
+
+exports.deletePostAdmin = (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, jwtSecurity);
+    const admin = decodedToken.admin;
+    if (admin === 1) {
+        let postId = req.params.id;
+        let sqlInserts = [postId];
+        postModels.delPostAdmin(sqlInserts)
+            .then((response) => {
+                res.status(200).json(JSON.stringify(response));
+            })
+    } else {
+        res.status(400).json({ error : 'Requête non authorisée'})
+    }
 };
 
 exports.comment = (req, res) => {
@@ -114,4 +131,20 @@ exports.deleteCom = (req, res) => {
             console.log(error);
             res.status(400).json(JSON.stringify(error));
         })
+};
+
+exports.deleteComAdmin = (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, jwtSecurity);
+    const admin = decodedToken.admin;
+    if (admin === 1) {
+        let commentId = req.params.id;
+        let sqlInserts = [commentId];
+        postModels.delComAdmin(sqlInserts)
+            .then((response) => {
+                res.status(200).json(JSON.stringify(response));
+            })
+    } else {
+        res.status(400).json({ error : 'Requête non authorisée'})
+    }
 };
