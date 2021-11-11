@@ -7,7 +7,6 @@ const postCtrl = require('../controllers/post');
 try {
     router.get('/', postCtrl.allPost);
     router.post('/', multer, postCtrl.createPost);
-    router.put('/:id', userToken, multer ,postCtrl.updatePost);
     router.delete('/:id', userToken, postCtrl.deletePost);
     router.delete('/admin/:id', userToken, postCtrl.deletePostAdmin);
 
