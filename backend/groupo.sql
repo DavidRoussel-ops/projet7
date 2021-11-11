@@ -38,4 +38,4 @@ CREATE TABLE comments (
 )
     ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO utilisateurs VALUES (NULL, 'admin@gmail.com', 'adminGroupo', 'admin', 'admin', 1);
+INSERT INTO utilisateurs VALUES (NULL, 'admin@gmail.com', '$2b$10$m9UDSN/kbYFfpxJ/fbuUAOLReU0WHaZYhqYRqF3MU0fZzTjp6GEry', 'Groupomania', 'admin', 1);
