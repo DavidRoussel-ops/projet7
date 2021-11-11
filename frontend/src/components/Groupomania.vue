@@ -1,9 +1,8 @@
 <template>
     <div class="conteneur">
-      <navhome/>
+      <navhome v-if="userGet.admin === 0"/>
       <button @click="logout">Déconnexion</button>
       <newpost/>
-      <post/>
       <div class="style-post" v-for="(post, index) in allPosts" v-bind:key="index">
         <div>
           <img src="post.img"/>
@@ -11,6 +10,7 @@
         <p>{{ post.com }}</p>
         <p>Un post de {{ post.lname }} {{ post.fname }}</p>
           <button v-if="post.userId === userGet.id" @click="delPost(post.id)">Supprimer</button>
+          <button v-if="userGet.admin === 1" @click="delPostAdmin(post.id)">Supprimer</button>
           <div v-if="post.userId === userGet.id">
           <button @click="postPut(post.img, post.com, post.id, post.userId)">Modifier post</button>
               <form v-if="formPutPost">
@@ -26,6 +26,7 @@
           <div v-for="comments in allComments" v-bind:key="comments">
             <p>{{ comments.content }}</p>
             <p>Commenté par {{ comments.lname }} {{ comments.fname }}</p>
+            <button v-if="userGet.admin === 1" @click="delComAdmin(comments.id)">Supprimer</button>
             <button v-if="comments.userId === userGet.id" @click="comPut(comments.content, comments.id, comments.userId)">Modifier</button>
             <form v-if="formPutCom">
               <input v-model="dataPutCom.content"><br>
@@ -54,13 +55,11 @@
 import axios from "axios";
 import newpost from '@/components/NewPost';
 import navhome from "@/components/NavHome";
-import post from '@/components/Post';
 
 export default {
   components : {
     newpost : newpost,
     navhome : navhome,
-    post : post,
   },
   data() {
     return {
@@ -206,6 +205,14 @@ export default {
         window.location.reload();
       })
     },
+    delPostAdmin(postId) {
+      axios.delete('http://localhost:3000/posts/admin/' + postId, {headers : {Authorization : 'Bearer ' + localStorage.token}})
+      .then(response => {
+        let delDataAdmin = JSON.parse(response.data);
+        console.log(delDataAdmin);
+        window.location.reload();
+      })
+    },
     delCom(comId) {
       this.dataNewComment.id = comId;
       axios.delete('http://localhost:3000/posts/comments/' + comId, {headers : {Authorization : 'Bearer ' + localStorage.token}})
@@ -214,7 +221,15 @@ export default {
         console.log(delComData);
         window.location.reload();
       })
-    }
+    },
+    delComAdmin(comId) {
+      axios.delete('http://localhost:3000/posts/admin/comments/' + comId, {headers : {Authorization : 'Bearer ' + localStorage.token}})
+          .then(response => {
+            let delComDataAdmin = JSON.parse(response.data);
+            console.log(delComDataAdmin);
+            window.location.reload();
+          })
+    },
   },
   mounted() {
     this.userId = localStorage.userId;
