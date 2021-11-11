@@ -23,7 +23,6 @@ export default {
       dataLog : {
         mail : '',
         pass : '',
-        admin : '',
       },
       dataLogGood : '',
       goodLog : false,
