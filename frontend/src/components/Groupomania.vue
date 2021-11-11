@@ -2,24 +2,13 @@
     <div class="conteneur">
       <navhome v-if="userGet.admin === 0"/>
       <button @click="logout">Déconnexion</button>
-      <newpost/>
-      <div class="style-post" v-for="(post, index) in allPosts" v-bind:key="index">
-        <div>
-          <img src="post.img"/>
-        <p>{{ post.img }}</p>
-        <p>{{ post.com }}</p>
+      <post/>
+      <div class="style-post" v-for="post in allPosts" v-bind:key="post">
+        <img v-if="post.img" :src="post.img" :alt="post.com">
+        <p v-if="post.com">{{ post.com }}</p>
         <p>Un post de {{ post.lname }} {{ post.fname }}</p>
           <button v-if="post.userId === userGet.id" @click="delPost(post.id)">Supprimer</button>
           <button v-if="userGet.admin === 1" @click="delPostAdmin(post.id)">Supprimer</button>
-          <div v-if="post.userId === userGet.id">
-          <button @click="postPut(post.img, post.com, post.id, post.userId)">Modifier post</button>
-              <form v-if="formPutPost">
-                <input v-model="dataPutPost.com" placeholder="commentaire"><br>
-                <input v-model="dataPutPost.img" placeholder="image"><br>
-                <button @click="putPost(post.id)">Valider</button>
-                <button @click="endPut">Annuler</button>
-              </form>
-          </div>
         <button @click="getComment(post.id)">Voir les commentaires</button><br>
           <div v-if="seeCom">
         <div v-if="postId === post.id">
@@ -29,7 +18,7 @@
             <button v-if="userGet.admin === 1" @click="delComAdmin(comments.id)">Supprimer</button>
             <button v-if="comments.userId === userGet.id" @click="comPut(comments.content, comments.id, comments.userId)">Modifier</button>
             <form v-if="formPutCom">
-              <input v-model="dataPutCom.content"><br>
+              <label for="contentPut"></label><input id="contentPut" v-model="dataPutCom.content"><br>
               <button @click="putCom(comments.id)">Valider</button>
               <button @click="endPutCom()">Fermer</button>
             </form>
@@ -41,30 +30,28 @@
         <div v-if="postId === post.id">
         <button v-if="seeCom" class="btn-com" @click="addComment(post.id)">Ajouter un commentaire</button>
         <form v-if="addCom">
-          <input v-model="dataNewComment.content" type="text">
+          <label for="newContent"></label><input id="newContent" v-model="dataNewComment.content" type="text">
           <button @click="sendComment(post.id)">Envoyer</button>
           <button @click="endComment()">Annuler</button>
         </form>
         </div>
-      </div>
       </div>
     </div>
 </template>
 
 <script>
 import axios from "axios";
-import newpost from '@/components/NewPost';
 import navhome from "@/components/NavHome";
+import post from '@/components/Post';
 
 export default {
   components : {
-    newpost : newpost,
+    post : post,
     navhome : navhome,
   },
   data() {
     return {
       addCom : false,
-      formPutPost : false,
       formPutCom : false,
       seeCom : false,
       commentId : '',
@@ -88,19 +75,12 @@ export default {
         content : '',
         userId : '',
       },
-      dataPutPost : {
-        id : '',
-        com : '',
-        img : '',
-        userId : '',
-      },
       dataPutCom : {
         id : '',
         content : '',
         userId : '',
       },
       dataCommentSend : '',
-      dataPostPut : '',
       dataComPut : '',
       allPosts : [],
       allComments : [],
@@ -129,19 +109,6 @@ export default {
     endComment() {
       this.addCom = false;
     },
-    endPut() {
-      this.formPutPost = false;
-    },
-    endPutCom() {
-      this.formPutCom = false;
-    },
-    postPut(postImg, postCom, postId, postUserId) {
-      this.dataPutPost.img = postImg;
-      this.dataPutPost.com = postCom;
-      this.dataPutPost.id = postId;
-      this.dataPutPost.userId = postUserId;
-      this.formPutPost = true;
-    },
     comPut(comContent, comId, comUserId) {
       this.dataPutCom.content = comContent;
       this.dataPutCom.id = comId;
@@ -162,23 +129,6 @@ export default {
           .catch(error => {
             console.log(error)
           })
-    },
-    putPost(postId) {
-      this.postId = postId;
-      this.dataPostPut = JSON.stringify(this.dataPutPost);
-      axios.put('http://localhost:3000/posts/' + postId , this.dataPostPut , {headers : {'Content-Type' : 'application/json', Authorization : 'Bearer ' + localStorage.token}})
-          .then(response => {
-            let putPostData = JSON.parse(response.data);
-            console.log(putPostData);
-            this.dataPutPost.com = '';
-            this.dataPutPost.img = '';
-            this.dataPutPost.userId = '';
-            this.dataPutPost.id = '';
-            window.location.reload();
-          })
-      .catch(err => {
-        console.log(err)
-      })
     },
     putCom(commentId) {
       this.commentId = commentId;
