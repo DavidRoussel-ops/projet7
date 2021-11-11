@@ -25,25 +25,6 @@ class postModels {
             })
         })
     }
-    modifyPost(sqlInserts1, sqlInserts2) {
-        let upPost1 = `SELECT * FROM groupomanie.posts WHERE id = ?`;
-        upPost1 = mysql.format(upPost1, sqlInserts1);
-        return new Promise((resolve, reject) => {
-            db.query(upPost1, function (err, result) {
-                if (err) throw err;
-                if (sqlInserts2[3] === result[0].userId) {
-                    let upPost2 = `UPDATE groupomanie.posts SET com = ?, img = ? WHERE id = ? AND userId = ?`;
-                    upPost2 = mysql.format(upPost2, sqlInserts2);
-                    db.query(upPost2, function (err, result) {
-                        if (err) throw err;
-                        resolve({ message : 'Post modifié avec succès'});
-                    })
-                } else {
-                    reject({error : 'Modification impossible'})
-                }
-            })
-        })
-    }
     delPost(sqlInserts1, sqlInserts2) {
         let delPost1 = `SELECT * FROM groupomanie.posts WHERE id = ?`;
         delPost1 = mysql.format(delPost1, sqlInserts1);
@@ -123,7 +104,7 @@ class postModels {
                     delCom2 = mysql.format(delCom2, sqlInserts2);
                     db.query(delCom2, function (err, result) {
                         if (err) throw err;
-                        resolve({ message : 'Commentaire supprimer !'});
+                        resolve({ message : 'Commentaire supprimé !'});
                     })
                 } else {
                     reject({ error : 'Suppression impossible'});
@@ -137,7 +118,7 @@ class postModels {
         return new Promise((resolve) => {
             db.query(delComAdmin, function (err, result) {
                 if (err) throw err;
-                resolve({ message : 'Commentaire supprimer'});
+                resolve({ message : 'Commentaire supprimer avec succès'});
             })
         })
     }
