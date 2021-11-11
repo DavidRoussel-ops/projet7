@@ -17,31 +17,12 @@ exports.allPost = (req, res) => {
 exports.createPost = (req, res) => {
     let userId = req.body.userId;
     let com = req.body.com;
-    let img = req.body.img;
-    //let img = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
+    //let img = req.body.img;
+    let img = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
     let sqlInserts = [userId, com, img];
     postModels.createPost(sqlInserts)
         .then((response) => {
             res.status(201).json(JSON.stringify(response));
-        })
-};
-
-exports.updatePost = (req, res) => {
-    const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, jwtSecurity);
-    const userId = decodedToken.userId;
-    let com = req.body.com;
-    let img = req.body.img;
-    let postId = req.params.id;
-    let sqlInserts1 = [postId];
-    let sqlInserts2 = [com, img, postId, userId];
-    postModels.modifyPost(sqlInserts1, sqlInserts2)
-        .then((response) => {
-            res.status(201).json(JSON.stringify(response));
-        })
-        .catch((error) => {
-            console.log(error);
-            res.status(400).json(JSON.stringify(error));
         })
 };
 
@@ -52,14 +33,14 @@ exports.deletePost = (req, res) => {
     const postId = req.params.id;
     let sqlInserts1 = [postId];
     let sqlInserts2 = [postId, userId];
-    postModels.delPost(sqlInserts1, sqlInserts2)
-        .then((response) => {
-            res.status(200).json(JSON.stringify(response));
-        })
-        .catch((error) => {
-            console.log(error);
-            res.status(400).json(JSON.stringify(error));
-        })
+        postModels.delPost(sqlInserts1, sqlInserts2)
+            .then((response) => {
+                res.status(200).json(JSON.stringify(response));
+            })
+            .catch((error) => {
+                console.log(error);
+                res.status(400).json(JSON.stringify(error));
+            })
 };
 
 exports.deletePostAdmin = (req, res) => {
