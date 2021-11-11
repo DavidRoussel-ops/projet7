@@ -23,6 +23,7 @@ export default {
       dataLog : {
         mail : '',
         pass : '',
+        admin : '',
       },
       dataLogGood : '',
       goodLog : false,
@@ -37,6 +38,7 @@ export default {
             let log = JSON.parse(response.data);
             localStorage.userId = log.userId;
             localStorage.token = log.token;
+            localStorage.admin = log.admin;
             this.$router.push('/groupomania');
           })
           .catch(error => {
