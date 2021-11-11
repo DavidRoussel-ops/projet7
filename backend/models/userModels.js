@@ -32,10 +32,12 @@ class userModels {
                             resolve({
                                 userId : result[0].id,
                                 token : jwt.sign(
-                                    {userId : result[0].id},
+                                    {userId : result[0].id,
+                                    admin : result[0].admin},
                                     jwtSecurity,
                                     {expiresIn: '24h'}
-                                )
+                                ),
+                                admin : result[0].admin
                             });
                         })
                         .catch(error => reject({ error }))
