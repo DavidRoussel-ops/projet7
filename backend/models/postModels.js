@@ -63,6 +63,16 @@ class postModels {
             })
         })
     }
+    delPostAdmin(sqlInserts) {
+        let delPostAdmin = `DELETE FROM groupomanie.posts WHERE id = ?`;
+        delPostAdmin = mysql.format(delPostAdmin, sqlInserts);
+        return new Promise((resolve) => {
+            db.query(delPostAdmin, function (err, result) {
+                if (err) throw err;
+                resolve({ message : 'Post supprimer avec succès'});
+            })
+        })
+    }
     comment(sqlInserts){
         let comment = `SELECT groupomanie.comments.content, groupomanie.comments.date, groupomanie.comments.id, groupomanie.comments.userId, groupomanie.utilisateurs.fname, groupomanie.utilisateurs.lname FROM groupomanie.comments JOIN groupomanie.utilisateurs ON groupomanie.comments.userId = groupomanie.utilisateurs.id WHERE postId = ? ORDER BY groupomanie.comments.date`;
         comment = mysql.format(comment, sqlInserts);
@@ -113,12 +123,22 @@ class postModels {
                     delCom2 = mysql.format(delCom2, sqlInserts2);
                     db.query(delCom2, function (err, result) {
                         if (err) throw err;
-                        resolve({ message : 'Commentaire supprimé !'});
+                        resolve({ message : 'Commentaire supprimer !'});
                     })
                 } else {
                     reject({ error : 'Suppression impossible'});
                 }
             });
+        })
+    }
+    delComAdmin(sqlInserts) {
+        let delComAdmin = `DELETE FROM groupomanie.comments WHERE id = ?`;
+        delComAdmin = mysql.format(delComAdmin, sqlInserts);
+        return new Promise((resolve) => {
+            db.query(delComAdmin, function (err, result) {
+                if (err) throw err;
+                resolve({ message : 'Commentaire supprimer'});
+            })
         })
     }
 }
