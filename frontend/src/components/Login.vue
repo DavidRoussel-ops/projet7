@@ -1,12 +1,15 @@
 <template>
   <div>
   <Nav/>
-  <form>
-    <input v-model="dataLog.mail" placeholder="e-mail"><br>
-    <input v-model="dataLog.pass" placeholder="mots de passe"><br>
-    <button @click="sendLog()">Connexion</button>
+    <img class="img-home" src="../assets/icon-left-font-monochrome-black.png" alt="fond acceuil"/>
+    <div class="form-sign-log">
+  <form class="form-log">
+    <label><input class="input" v-model="dataLog.mail" placeholder="e-mail"></label><br>
+    <label><input class="input" v-model="dataLog.pass" placeholder="mots de passe"></label><br>
+    <button class="btn-sign-log" @click="sendLog()">Connexion</button>
     <p v-if="goodLog">{{ message }}</p>
   </form>
+    </div>
   </div>
 </template>
 
@@ -49,3 +52,15 @@ export default {
   }
 }
 </script>
+
+<style>
+
+.form-log {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 25%;
+  left: 25%;
+}
+
+</style>

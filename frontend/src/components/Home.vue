@@ -1,7 +1,7 @@
 <template>
   <div id="conteneur">
     <Nav/>
-    <h2>Bienvenue sur le reseau Groupomania</h2>
+    <img class="img-home" src="../assets/icon-left-font-monochrome-black.png" alt="fond acceuil"/>
   </div>
 </template>
 
@@ -13,3 +13,18 @@ components : {
 }
 }
 </script>
+
+<style>
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.img-home {
+  position: relative;
+  left: 30%;
+  width: 40%;
+}
+
+</style>

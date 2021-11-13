@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <button @click="forum">Acceuil</button>
-    <button @click="profil">Profile</button>
+  <div class="conteneur-nav">
+    <button class="btn-nav" @click="forum">Acceuil</button>
+    <button class="btn-nav" @click="profil">Profile</button>
+    <button class="btn-nav" @click="logout">Déconnexion</button>
   </div>
 </template>
 
@@ -17,7 +18,11 @@ export default {
     },
     profil : function () {
       this.$router.push('/profil')
-    }
+    },
+    logout : function () {
+      localStorage.clear();
+      this.$router.push('/')
+    },
   }
 }
 </script>

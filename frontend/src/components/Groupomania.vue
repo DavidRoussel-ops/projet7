@@ -1,11 +1,10 @@
 <template>
     <div class="conteneur">
       <navhome v-if="userGet.admin === 0"/>
-      <button @click="logout">Déconnexion</button>
       <post/>
       <div class="style-post" v-for="post in allPosts" v-bind:key="post">
         <img v-if="post.img" :src="post.img" :alt="post.com">
-        <p v-if="post.com">{{ post.com }}</p>
+        <p>{{ post.com }}</p>
         <p>Un post de {{ post.lname }} {{ post.fname }}</p>
           <button v-if="post.userId === userGet.id" @click="delPost(post.id)">Supprimer</button>
           <button v-if="userGet.admin === 1" @click="delPostAdmin(post.id)">Supprimer</button>
@@ -87,10 +86,6 @@ export default {
     }
   },
   methods : {
-    logout : function () {
-      localStorage.clear();
-      this.$router.push('/')
-    },
     getComment(postId) {
       this.postId = postId;
       axios.get('http://localhost:3000/posts/' + postId + '/comments', {headers : {Authorization : 'Bearer ' + localStorage.token}})
@@ -208,6 +203,7 @@ export default {
 <style>
 .style-post{
   border: 1px solid black;
+  margin-top: 100px;
 }
 
 .center {

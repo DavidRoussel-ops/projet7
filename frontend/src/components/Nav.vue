@@ -1,5 +1,5 @@
 <template>
-  <div id="conteneurNav">
+  <div class="conteneur-nav">
     <button class="btn-nav" @click="home" >Accueil</button>
     <button class="btn-nav" @click="sign" >S'inscrire</button>
     <button class="btn-nav" @click="log">Se connecter</button>
@@ -29,17 +29,22 @@ export default {
 </script>
 
 <style>
-#conteneurNav{
+.conteneur-nav{
+  position: fixed;
+  top: 0;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
+  background-color: black;
+  border: 20px solid black;
+  width: 100%;
 }
 
 .btn-nav{
   width: 150px;
   height: 50px;
   border-radius: 20px;
-  color: white;
-  background-color: blue;
+  color: black;
+  background-color: white;
 }
 </style>
 
