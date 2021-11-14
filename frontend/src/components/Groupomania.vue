@@ -14,29 +14,35 @@
         <button class="btn-show-com" @click="getComment(post.id)">Voir les commentaires</button><br>
         </div>
           <div class="style-comment" v-if="seeCom">
+            <button class="btn-close" @click="endCom()">X</button>
         <div v-if="postId === post.id">
           <div v-for="comments in allComments" v-bind:key="comments">
+            <div class="info-post">
             <p>{{ comments.content }}</p>
             <p>Commenté par {{ comments.lname }} {{ comments.fname }}</p>
-            <button v-if="userGet.admin === 1" @click="delComAdmin(comments.id)">Supprimer</button>
-            <button v-if="comments.userId === userGet.id" @click="comPut(comments.content, comments.id, comments.userId)">Modifier</button>
+            </div>
+            <div class="btn-post-choice">
+              <button class="btn-warning" v-if="userGet.admin === 1" @click="delComAdmin(comments.id)">Supprimer</button>
+              <button class="btn-warning" v-if="comments.userId === userGet.id" @click="delCom(comments.id)">Supprimer</button>
+            <button class="btn-show-com" v-if="comments.userId === userGet.id" @click="comPut(comments.content, comments.id, comments.userId)">Modifier</button>
+            </div>
             <form v-if="formPutCom">
               <label for="contentPut"></label><input id="contentPut" v-model="dataPutCom.content"><br>
               <button @click="putCom(comments.id)">Valider</button>
               <button @click="endPutCom()">Fermer</button>
             </form>
-            <button v-if="comments.userId === userGet.id" @click="delCom(comments.id)">Supprimer</button>
           </div>
         </div>
-            <button class="btn-close" @click="endCom()">X</button>
           </div>
         <div v-if="postId === post.id">
         <button v-if="seeCom" class="btn-add-com" @click="addComment(post.id)">Ajouter un commentaire</button>
           <div class="form-add-com">
         <form v-if="addCom">
           <label for="newContent"></label><input class="input-add-com" id="newContent" v-model="dataNewComment.content" type="text"><br>
-          <button @click="sendComment(post.id)">Envoyer</button>
-          <button @click="endComment()">Annuler</button>
+          <div class="btn-post-choice">
+            <button class="btn-warning" @click="endComment()">Annuler</button>
+          <button class="btn-show-com" @click="sendComment(post.id)">Envoyer</button>
+          </div>
         </form>
           </div>
         </div>
@@ -281,6 +287,7 @@ export default {
 }
 
 .input-add-com {
+  display: block;
   border-radius: 20px;
   width: 60%;
   height: 20px;

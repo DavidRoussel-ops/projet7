@@ -20,6 +20,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #222831;
+  font-family: "Times New Roman",Calibri,serif;
 }
 
 .img-home {

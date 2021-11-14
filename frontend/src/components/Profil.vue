@@ -1,7 +1,8 @@
 <template>
   <div>
     <navhome/>
-    <div>
+    <div class="profil">
+      <div class="my-profil">
       <p>Mon profil</p>
       <ul>
       <li>Mail : {{ userGet.mail }}</li>
@@ -12,15 +13,16 @@
     <div>
       <p>Modifier mon profil</p>
       <form>
-        <input v-model="userPut.mail" placeholder="Modifier E-mail"><br>
-        <input v-model="userPut.lname" placeholder="Modifier Nom"><br>
-        <input v-model="userPut.fname" placeholder="Modifier Prénom"><br>
-        <button @click="putUser()">Modifié</button>
+        <label><input class="input-put-com" v-model="userPut.mail" placeholder="Modifier E-mail"></label><br>
+        <label><input class="input-put-com" v-model="userPut.lname" placeholder="Modifier Nom"></label><br>
+        <label><input class="input-put-com" v-model="userPut.fname" placeholder="Modifier Prénom"></label><br>
+        <button class="btn-show-com" @click="putUser()">Modifié</button>
       </form>
     </div>
     <div>
       <p>Supprimer mon profil</p>
-      <button @click="delUser">Supprimer</button>
+      <button class="btn-put-warning" @click="delUser">Supprimer</button>
+    </div>
     </div>
   </div>
 </template>
@@ -90,3 +92,40 @@ export default {
   }
 }
 </script>
+
+<style>
+
+.profil {
+  border: 1px solid black;
+  box-shadow: 5px 5px 5px black;
+  background-color: #EEEEEE;
+  border-radius: 20px;
+  margin: 100px auto;
+  width: 70%;
+  text-align: center;
+  font-size: large;
+}
+
+li {
+  list-style-type: none;
+}
+
+.input-put-com {
+  display: block;
+  border-radius: 20px;
+  width: 60%;
+  height: 20px;
+  margin: 1px auto;
+}
+
+.btn-put-warning {
+  width: 250px;
+  height: 50px;
+  border-radius: 20px;
+  font-size: large;
+  color: white;
+  background-color: red;
+  margin-bottom: 50px;
+}
+
+</style>
