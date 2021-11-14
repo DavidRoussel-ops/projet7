@@ -1,7 +1,7 @@
 <template>
   <div>
   <Nav/>
-    <img class="img-home" src="../assets/icon-left-font-monochrome-black.png" alt="fond acceuil"/>
+    <img class="img-home" src="../assets/icon-left-font-monochrome-white.png" alt="fond acceuil"/>
     <div class="form-sign-log">
   <form class="form-log">
     <label><input class="input" v-model="dataLog.mail" placeholder="e-mail"></label><br>

@@ -3,13 +3,17 @@
       <navhome v-if="userGet.admin === 0"/>
       <post/>
       <div class="style-post" v-for="post in allPosts" v-bind:key="post">
-        <img v-if="post.img" :src="post.img" :alt="post.com">
+        <img class="img-post" v-if="post.img" :src="post.img" :alt="post.com">
+        <div class="info-post">
         <p>{{ post.com }}</p>
         <p>Un post de {{ post.lname }} {{ post.fname }}</p>
-          <button v-if="post.userId === userGet.id" @click="delPost(post.id)">Supprimer</button>
+        </div>
+        <div class="btn-post-choice">
+          <button class="btn-warning" v-if="post.userId === userGet.id" @click="delPost(post.id)">Supprimer</button>
           <button v-if="userGet.admin === 1" @click="delPostAdmin(post.id)">Supprimer</button>
-        <button @click="getComment(post.id)">Voir les commentaires</button><br>
-          <div v-if="seeCom">
+        <button class="btn-show-com" @click="getComment(post.id)">Voir les commentaires</button><br>
+        </div>
+          <div class="style-comment" v-if="seeCom">
         <div v-if="postId === post.id">
           <div v-for="comments in allComments" v-bind:key="comments">
             <p>{{ comments.content }}</p>
@@ -24,15 +28,17 @@
             <button v-if="comments.userId === userGet.id" @click="delCom(comments.id)">Supprimer</button>
           </div>
         </div>
-            <button @click="endCom()">Fermer</button>
+            <button class="btn-close" @click="endCom()">X</button>
           </div>
         <div v-if="postId === post.id">
-        <button v-if="seeCom" class="btn-com" @click="addComment(post.id)">Ajouter un commentaire</button>
+        <button v-if="seeCom" class="btn-add-com" @click="addComment(post.id)">Ajouter un commentaire</button>
+          <div class="form-add-com">
         <form v-if="addCom">
-          <label for="newContent"></label><input id="newContent" v-model="dataNewComment.content" type="text">
+          <label for="newContent"></label><input class="input-add-com" id="newContent" v-model="dataNewComment.content" type="text"><br>
           <button @click="sendComment(post.id)">Envoyer</button>
           <button @click="endComment()">Annuler</button>
         </form>
+          </div>
         </div>
       </div>
     </div>
@@ -203,11 +209,86 @@ export default {
 <style>
 .style-post{
   border: 1px solid black;
-  margin-top: 100px;
+  box-shadow: 5px 5px 5px black;
+  background-color: #EEEEEE;
+  border-radius: 20px;
+  margin: 100px auto;
+  width: 60%;
 }
 
-.center {
-  position: absolute;
-  left: 50%;
+.img-post {
+  display: block;
+  border-radius: 30px;
+  width: 70%;
+  margin: 20px auto;
 }
+
+.info-post {
+  display: block;
+  margin: 10px auto;
+  width: 50%;
+  text-align: center;
+  font-size: large;
+}
+
+.btn-warning {
+  justify-content: flex-start;
+  width: 250px;
+  height: 50px;
+  border-radius: 20px;
+  font-size: large;
+  color: white;
+  background-color: red;
+  margin-right: 150px;
+}
+
+.btn-show-com {
+  justify-content: flex-end;
+  width: 250px;
+  height: 50px;
+  border-radius: 20px;
+  font-size: large;
+  color: white;
+  background-color: royalblue;
+}
+
+.btn-post-choice {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px;
+}
+
+.style-comment {
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.btn-close {
+  color: #EEEEEE;
+  background-color: red;
+}
+
+.btn-add-com {
+  display: block;
+  margin: 10px auto;
+  width: 250px;
+  height: 50px;
+  border-radius: 20px;
+  font-size: large;
+  color: white;
+  background-color: royalblue;
+}
+
+.input-add-com {
+  border-radius: 20px;
+  width: 60%;
+  height: 20px;
+  margin: 10px auto;
+}
+
+.form-add-com {
+  border: 1px solid black;
+}
+
 </style>

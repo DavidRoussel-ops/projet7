@@ -1,7 +1,7 @@
 <template>
   <div class="post">
     <form v-if="formPost" class="new-post" @submit.prevent="addPost()" enctype="multipart/form-data">
-      <button class="btn-stop-post" @click="exitNewPost">x</button>
+      <button class="btn-stop-post" @click="exitNewPost">X</button>
       <label for="com"></label><input class="input-post-com" id="com" type="text" placeholder="commentaire"/><br>
       <input class="btn-choice" type="file" ref="file" @change="selectFile"/><br>
       <button class="btn-post">Posté</button>
@@ -53,17 +53,17 @@ export default {
 
 .post {
   position: absolute;
-  width: 40%;
+  width: 30%;
   height: 250px;
-  left: 57%;
+  left: 67%;
   top: 65%;
 }
 
 .new-post {
   position: fixed;
-  background-color: white;
+  background-color: #EEEEEE;
   border: 1px solid black;
-  width: 40%;
+  width: 30%;
   height: 250px;
   border-radius: 20px;
 }
@@ -72,7 +72,7 @@ export default {
   color: white;
   background-color: red;
   position: absolute;
-  left: 95%;
+  left: 93%;
   top: 5%;
 }
 
@@ -105,8 +105,9 @@ export default {
 
 .btn-new-post {
   position: fixed;
-  background-color: black;
-  color: white;
+  background-color: #FD7014;
+  border: 1px solid #222831;
+  color: #EEEEEE;
   border-radius: 50%;
   left: 92%;
   top: 82%;

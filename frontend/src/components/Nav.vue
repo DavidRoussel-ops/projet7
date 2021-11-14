@@ -34,8 +34,8 @@ export default {
   top: 0;
   display: flex;
   flex-direction: row;
-  background-color: black;
-  border: 20px solid black;
+  background-color: #FD7014;
+  border: 20px solid #FD7014;
   width: 100%;
 }
 
@@ -43,8 +43,9 @@ export default {
   width: 150px;
   height: 50px;
   border-radius: 20px;
+  border: 1px solid #222831;
   color: black;
-  background-color: white;
+  background-color: #EEEEEE;
 }
 </style>
 
