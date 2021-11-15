@@ -15,19 +15,37 @@ components : {
 </script>
 
 <style>
+@media screen and (min-width: 1300px) {
 
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #222831;
-  font-family: "Times New Roman",Calibri,serif;
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #222831;
+    font-family: "Times New Roman",Calibri,serif;
+  }
+
+  .img-home {
+    display: block;
+    margin: 50px auto;
+  }
+
 }
 
-.img-home {
-  position: absolute;
-  left: 30%;
-  top: 10%;
-  width: 40%;
+@media screen and (max-width: 1300px) {
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #222831;
+    font-family: "Times New Roman",Calibri,serif;
+  }
+
+  .img-home {
+    display: block;
+    margin: 50px auto;
+    width: 50%;
+  }
+
 }
 
 </style>

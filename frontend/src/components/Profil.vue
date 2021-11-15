@@ -3,15 +3,13 @@
     <navhome/>
     <div class="profil">
       <div class="my-profil">
-      <p>Mon profil</p>
-      <ul>
-      <li>Mail : {{ userGet.mail }}</li>
-      <li>Nom : {{ userGet.lname }}</li>
-      <li>Prénom : {{ userGet.fname }}</li>
-      </ul>
+      <h2>Mon profil</h2>
+      <p>Mail : {{ userGet.mail }}</p>
+      <p>Nom : {{ userGet.lname }}</p>
+      <p>Prénom : {{ userGet.fname }}</p>
     </div>
     <div>
-      <p>Modifier mon profil</p>
+      <h2>Modifier mon profil</h2>
       <form>
         <label><input class="input-put-com" v-model="userPut.mail" placeholder="Modifier E-mail"></label><br>
         <label><input class="input-put-com" v-model="userPut.lname" placeholder="Modifier Nom"></label><br>
@@ -20,7 +18,7 @@
       </form>
     </div>
     <div>
-      <p>Supprimer mon profil</p>
+      <h2>Supprimer mon profil</h2>
       <button class="btn-put-warning" @click="delUser">Supprimer</button>
     </div>
     </div>
@@ -94,38 +92,69 @@ export default {
 </script>
 
 <style>
+@media screen and (min-width: 1300px){
 
-.profil {
-  border: 1px solid black;
-  box-shadow: 5px 5px 5px black;
-  background-color: #EEEEEE;
-  border-radius: 20px;
-  margin: 100px auto;
-  width: 70%;
-  text-align: center;
-  font-size: large;
+  .profil {
+    border: 1px solid black;
+    box-shadow: 5px 5px 5px black;
+    background-color: #EEEEEE;
+    border-radius: 20px;
+    margin: 100px auto;
+    width: 70%;
+    text-align: center;
+    font-size: large;
+  }
+
+  .input-put-com {
+    display: block;
+    border-radius: 20px;
+    width: 60%;
+    height: 20px;
+    margin: 1px auto;
+  }
+
+  .btn-put-warning {
+    width: 250px;
+    height: 50px;
+    border-radius: 20px;
+    font-size: large;
+    color: white;
+    background-color: red;
+    margin-bottom: 50px;
+  }
+
 }
+@media screen and (max-width: 1300px) {
 
-li {
-  list-style-type: none;
+  .profil {
+    border: 1px solid black;
+    box-shadow: 5px 5px 5px black;
+    background-color: #EEEEEE;
+    border-radius: 20px;
+    margin: 50px auto;
+    width: 80%;
+    height: 600px;
+    text-align: center;
+    font-size: large;
+  }
+
+  .input-put-com {
+    display: block;
+    border-radius: 20px;
+    width: 80%;
+    height: 20px;
+    margin: 1px auto;
+  }
+
+  .btn-put-warning {
+    width: 250px;
+    height: 50px;
+    border-radius: 20px;
+    font-size: large;
+    color: white;
+    background-color: red;
+    margin-bottom: 50px;
+  }
+
 }
-
-.input-put-com {
-  display: block;
-  border-radius: 20px;
-  width: 60%;
-  height: 20px;
-  margin: 1px auto;
-}
-
-.btn-put-warning {
-  width: 250px;
-  height: 50px;
-  border-radius: 20px;
-  font-size: large;
-  color: white;
-  background-color: red;
-  margin-bottom: 50px;
-}
-
 </style>

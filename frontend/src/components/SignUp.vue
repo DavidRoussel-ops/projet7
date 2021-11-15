@@ -51,39 +51,80 @@ export default {
 </script>
 
 <style>
+@media screen and (min-width: 1300px) {
 
-.form-sign-log {
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 20px;
-  position: absolute;
-  top: 30%;
-  left: 30%;
-  width: 40%;
-  height: 40%;
+  .form-sign-log {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 40%;
+    height: 40%;
+  }
+
+  .form-sign {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 25%;
+    left: 25%;
+  }
+
+  .input {
+    border-radius: 20px;
+    width: 100%;
+    height: 20px;
+    margin-bottom: 10px;
+  }
+
+  .btn-sign-log {
+    position: absolute;
+    border-radius: 20px;
+    width: 80%;
+    height: 50px;
+    left: 10%;
+    background-color: white;
+  }
+
 }
 
-.form-sign {
-  position: absolute;
-  width: 50%;
-  height: 50%;
-  top: 25%;
-  left: 25%;
-}
+@media screen and (max-width: 1300px) {
 
-.input {
-  border-radius: 20px;
-  width: 100%;
-  height: 20px;
-  margin-bottom: 10px;
-}
+  .form-sign-log {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 60%;
+  }
 
-.btn-sign-log {
-  position: absolute;
-  border-radius: 20px;
-  width: 80%;
-  height: 50px;
-  left: 10%;
-  background-color: white;
+  .form-sign {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 20%;
+    left: 10%;
+  }
+
+  .input {
+    border-radius: 20px;
+    width: 100%;
+    height: 20px;
+    margin-bottom: 10px;
+  }
+
+  .btn-sign-log {
+    position: absolute;
+    border-radius: 20px;
+    width: 80%;
+    height: 30px;
+    left: 10%;
+    background-color: white;
+  }
+
 }
 
 </style>

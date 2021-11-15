@@ -1,8 +1,8 @@
 <template>
   <div class="conteneur-nav">
-    <button class="btn-nav" @click="forum">Acceuil</button>
-    <button class="btn-nav" @click="profil">Profile</button>
-    <button class="btn-nav" @click="logout">Déconnexion</button>
+    <a href="#" @click="forum"><i class="fas fa-users"></i></a>
+    <a href="#" @click="profil"><i class="fas fa-address-card"></i></a>
+    <a href="#" @click="logout"><i class="fas fa-power-off"></i></a>
   </div>
 </template>
 
@@ -26,3 +26,35 @@ export default {
   }
 }
 </script>
+
+<style>
+@media screen and (min-width: 1300px){
+
+  .fas {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 50px;
+    color: #222831;
+  }
+
+}
+
+@media screen and (max-width: 1300px){
+
+  .fas {
+    font-size: 50px;
+    color: #222831;
+  }
+
+  .fa-users {
+    padding-right: 20px;
+  }
+
+  .fa-address-card {
+    padding-right: 20px;
+  }
+
+}
+
+
+</style>

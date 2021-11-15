@@ -15,7 +15,7 @@
         </div>
           <div class="style-comment" v-if="seeCom">
             <button class="btn-close" @click="endCom()">X</button>
-        <div v-if="postId === post.id">
+          <div v-if="postId === post.id">
           <div v-for="comments in allComments" v-bind:key="comments">
             <div class="info-post">
             <p>{{ comments.content }}</p>
@@ -27,30 +27,27 @@
             <button class="btn-show-com" v-if="comments.userId === userGet.id" @click="comPut(comments.content, comments.id, comments.userId)">Modifier</button>
             </div>
             <form v-if="formPutCom">
-              <label for="contentPut"></label><input id="contentPut" v-model="dataPutCom.content"><br>
-              <button @click="putCom(comments.id)">Valider</button>
-              <button @click="endPutCom()">Fermer</button>
+              <button class="btn-close" @click="endPutCom()">X</button>
+              <label for="contentPut"></label><input class="input-add-com" id="contentPut" v-model="dataPutCom.content"><br>
+              <button class="btn-add-com" @click="putCom(comments.id)">Valider</button>
             </form>
           </div>
         </div>
-          </div>
         <div v-if="postId === post.id">
         <button v-if="seeCom" class="btn-add-com" @click="addComment(post.id)">Ajouter un commentaire</button>
-          <div class="form-add-com">
         <form v-if="addCom">
+          <button class="btn-close" @click="endComment()">X</button>
           <label for="newContent"></label><input class="input-add-com" id="newContent" v-model="dataNewComment.content" type="text"><br>
-          <div class="btn-post-choice">
-            <button class="btn-warning" @click="endComment()">Annuler</button>
-          <button class="btn-show-com" @click="sendComment(post.id)">Envoyer</button>
-          </div>
+          <button class="btn-add-com" @click="sendComment(post.id)">Envoyer</button>
         </form>
-          </div>
         </div>
+          </div>
       </div>
     </div>
 </template>
 
 <script>
+
 import axios from "axios";
 import navhome from "@/components/NavHome";
 import post from '@/components/Post';
@@ -115,6 +112,9 @@ export default {
     },
     endComment() {
       this.addCom = false;
+    },
+    endPutCom() {
+      this.formPutCom = false;
     },
     comPut(comContent, comId, comUserId) {
       this.dataPutCom.content = comContent;
@@ -213,89 +213,174 @@ export default {
 </script>
 
 <style>
-.style-post{
-  border: 1px solid black;
-  box-shadow: 5px 5px 5px black;
-  background-color: #EEEEEE;
-  border-radius: 20px;
-  margin: 100px auto;
-  width: 60%;
+@media screen and (min-width: 1300px){
+
+  .style-post{
+    border: 1px solid black;
+    box-shadow: 5px 5px 5px black;
+    background-color: #EEEEEE;
+    border-radius: 20px;
+    margin: 100px auto;
+    width: 60%;
+  }
+
+  .img-post {
+    display: block;
+    border-radius: 30px;
+    width: 70%;
+    margin: 20px auto;
+  }
+
+  .info-post {
+    display: block;
+    margin: 10px auto;
+    width: 50%;
+    text-align: center;
+    font-size: large;
+  }
+
+  .btn-warning {
+    justify-content: flex-start;
+    width: 250px;
+    height: 50px;
+    border-radius: 20px;
+    font-size: large;
+    color: white;
+    background-color: red;
+    margin-right: 150px;
+  }
+
+  .btn-show-com {
+    justify-content: flex-end;
+    width: 250px;
+    height: 50px;
+    border-radius: 20px;
+    font-size: large;
+    color: white;
+    background-color: royalblue;
+  }
+
+  .btn-post-choice {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .style-comment {
+    padding: 20px;
+  }
+
+  .btn-close {
+    color: #EEEEEE;
+    background-color: red;
+    border-radius: 50%;
+  }
+
+  .btn-add-com {
+    display: block;
+    margin: 10px auto;
+    width: 250px;
+    height: 50px;
+    border-radius: 20px;
+    font-size: large;
+    color: white;
+    background-color: royalblue;
+  }
+
+  .input-add-com {
+    display: block;
+    border-radius: 20px;
+    width: 60%;
+    height: 20px;
+    margin: 10px auto;
+  }
+
 }
 
-.img-post {
-  display: block;
-  border-radius: 30px;
-  width: 70%;
-  margin: 20px auto;
+@media screen and (max-width: 1300px){
+
+  .style-post{
+    border: 1px solid black;
+    box-shadow: 5px 5px 5px black;
+    background-color: #EEEEEE;
+    border-radius: 20px;
+    margin: 100px auto;
+    width: 80%;
+  }
+
+  .img-post {
+    display: block;
+    border-radius: 30px;
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  .info-post {
+    display: block;
+    margin: 10px auto;
+    width: 50%;
+    text-align: center;
+    font-size: large;
+  }
+
+  .btn-warning {
+    display: block;
+    width: 250px;
+    height: 50px;
+    border-radius: 20px;
+    margin: 10px auto;
+    font-size: large;
+    color: white;
+    background-color: red;
+  }
+
+  .btn-show-com {
+    display: block;
+    width: 250px;
+    height: 50px;
+    border-radius: 20px;
+    margin: 10px auto;
+    font-size: large;
+    color: white;
+    background-color: royalblue;
+  }
+
+  .btn-post-choice {
+    display: block;
+    flex-direction: column;
+  }
+
+  .style-comment {
+    padding: 20px;
+  }
+
+  .btn-close {
+    color: #EEEEEE;
+    background-color: red;
+    border-radius: 50%;
+  }
+
+  .btn-add-com {
+    display: block;
+    margin: 10px auto;
+    width: 250px;
+    height: 50px;
+    border-radius: 20px;
+    font-size: large;
+    color: white;
+    background-color: royalblue;
+  }
+
+  .input-add-com {
+    display: block;
+    border-radius: 20px;
+    width: 80%;
+    height: 20px;
+    margin: 10px auto;
+  }
+
 }
 
-.info-post {
-  display: block;
-  margin: 10px auto;
-  width: 50%;
-  text-align: center;
-  font-size: large;
-}
-
-.btn-warning {
-  justify-content: flex-start;
-  width: 250px;
-  height: 50px;
-  border-radius: 20px;
-  font-size: large;
-  color: white;
-  background-color: red;
-  margin-right: 150px;
-}
-
-.btn-show-com {
-  justify-content: flex-end;
-  width: 250px;
-  height: 50px;
-  border-radius: 20px;
-  font-size: large;
-  color: white;
-  background-color: royalblue;
-}
-
-.btn-post-choice {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 20px;
-}
-
-.style-comment {
-  border: 1px solid black;
-  padding: 20px;
-}
-
-.btn-close {
-  color: #EEEEEE;
-  background-color: red;
-}
-
-.btn-add-com {
-  display: block;
-  margin: 10px auto;
-  width: 250px;
-  height: 50px;
-  border-radius: 20px;
-  font-size: large;
-  color: white;
-  background-color: royalblue;
-}
-
-.input-add-com {
-  display: block;
-  border-radius: 20px;
-  width: 60%;
-  height: 20px;
-  margin: 10px auto;
-}
-
-.form-add-com {
-  border: 1px solid black;
-}
 
 </style>

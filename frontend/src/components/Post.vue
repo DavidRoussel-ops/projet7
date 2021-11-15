@@ -6,7 +6,7 @@
       <input class="btn-choice" type="file" ref="file" @change="selectFile"/><br>
       <button class="btn-post">Posté</button>
     </form>
-    <button v-if="btnPost" @click="showNewPost" class="btn-new-post">+</button>
+    <button v-if="btnPost" @click="showNewPost" class="btn-new-post"><i class="fas fa-comment"></i></button>
   </div>
 </template>
 
@@ -50,70 +50,151 @@ export default {
 </script>
 
 <style>
+@media screen and (min-width: 1300px) {
 
-.post {
-  position: absolute;
-  width: 30%;
-  height: 250px;
-  left: 67%;
-  top: 65%;
+  .post {
+    position: absolute;
+    width: 30%;
+    height: 250px;
+    left: 67%;
+    top: 65%;
+  }
+
+  .new-post {
+    position: fixed;
+    background-color: #EEEEEE;
+    border: 1px solid black;
+    width: 30%;
+    height: 250px;
+    border-radius: 20px;
+  }
+
+  .btn-stop-post {
+    border-radius: 50%;
+    color: white;
+    background-color: red;
+    position: absolute;
+    left: 93%;
+    top: 5%;
+  }
+
+  .input-post-com {
+    position: absolute;
+    left: 15%;
+    top: 30%;
+    width: 70%;
+    height: 20px;
+    border-radius: 20px;
+  }
+
+  .btn-choice {
+    position: absolute;
+    left: 35%;
+    top: 50%;
+  }
+
+  .btn-post {
+    background-color: royalblue;
+    color: white;
+    border-radius: 20px;
+    position: absolute;
+    left: 25%;
+    top: 70%;
+    width: 50%;
+    height: 50px;
+    font-size: 40px;
+  }
+
+  .btn-new-post {
+    position: fixed;
+    background-color: #FD7014;
+    border: 1px solid #222831;
+    color: #EEEEEE;
+    border-radius: 50%;
+    left: 92%;
+    top: 82%;
+    width: 100px;
+    height: 100px;
+    font-size: 50px;
+  }
+
 }
 
-.new-post {
-  position: fixed;
-  background-color: #EEEEEE;
-  border: 1px solid black;
-  width: 30%;
-  height: 250px;
-  border-radius: 20px;
-}
+@media screen and (max-width: 1300px) {
 
-.btn-stop-post {
-  color: white;
-  background-color: red;
-  position: absolute;
-  left: 93%;
-  top: 5%;
-}
+  .post {
+    position: absolute;
+    width: 70%;
+    height: 250px;
+    left: 20%;
+    top: 3%;
+  }
 
-.input-post-com {
-  position: absolute;
-  left: 15%;
-  top: 30%;
-  width: 70%;
-  height: 20px;
-  border-radius: 20px;
-}
+  .new-post {
+    position: fixed;
+    background-color: #EEEEEE;
+    border: 1px solid black;
+    width: 70%;
+    height: 250px;
+    border-radius: 20px;
+  }
 
-.btn-choice {
-  position: absolute;
-  left: 35%;
-  top: 50%;
-}
+  .btn-stop-post {
+    border-radius: 50%;
+    color: white;
+    background-color: red;
+    position: absolute;
+    left: 85%;
+    top: 5%;
+  }
 
-.btn-post {
-  background-color: royalblue;
-  color: white;
-  border-radius: 20px;
-  position: absolute;
-  left: 25%;
-  top: 70%;
-  width: 50%;
-  height: 50px;
-  font-size: 40px;
-}
+  .input-post-com {
+    position: absolute;
+    left: 5%;
+    top: 30%;
+    width: 90%;
+    height: 20px;
+    border-radius: 20px;
+  }
 
-.btn-new-post {
-  position: fixed;
-  background-color: #FD7014;
-  border: 1px solid #222831;
-  color: #EEEEEE;
-  border-radius: 50%;
-  left: 92%;
-  top: 82%;
-  width: 100px;
-  height: 100px;
-  font-size: 50px;
+  .btn-choice {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+  }
+
+  .btn-post {
+    background-color: royalblue;
+    color: white;
+    border-radius: 20px;
+    position: absolute;
+    left: 15%;
+    top: 70%;
+    width: 70%;
+    height: 50px;
+    font-size: 30px;
+  }
+
+  .btn-new-post {
+    position: fixed;
+    background-color: #FD7014;
+    border: 1px solid #222831;
+    color: #EEEEEE;
+    border-radius: 50%;
+    left: 77%;
+    top: 3%;
+    width: 50px;
+    height: 50px;
+  }
+
+  .fas {
+    margin: 0;
+  }
+
+  .fa-comment {
+    font-size: 30px;
+  }
+
 }
 
 </style>

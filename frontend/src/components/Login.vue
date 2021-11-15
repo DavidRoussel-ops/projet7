@@ -54,13 +54,28 @@ export default {
 </script>
 
 <style>
+@media screen and (min-width: 1300px) {
 
-.form-log {
-  position: absolute;
-  width: 50%;
-  height: 50%;
-  top: 25%;
-  left: 25%;
+  .form-log {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 25%;
+    left: 25%;
+  }
+
+}
+
+@media screen and (max-width: 1300px) {
+
+  .form-log {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 20%;
+    left: 10%;
+  }
+
 }
 
 </style>
