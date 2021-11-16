@@ -1,10 +1,14 @@
+//Contante qui appel jsonwebtoken
 const jwt = require('jsonwebtoken');
+//Contante qui appel la clef de securité
 const jwtSecurity = require('../Security/tokenSecurity');
+//Contante qui appel les models post
 const PostModels = require('../models/postModels');
 require('dotenv').config();
 
 let postModels = new PostModels();
 
+//Fonction pour voir tous les posts
 exports.allPost = (req, res) => {
     postModels.allPost()
         .then((response) => {
@@ -12,6 +16,7 @@ exports.allPost = (req, res) => {
         });
 };
 
+//Fonction créer un post
 exports.createPost = (req, res) => {
     let userId = req.body.userId;
     let com = req.body.com;
@@ -23,6 +28,7 @@ exports.createPost = (req, res) => {
         })
 };
 
+//Fonction suppression de post
 exports.deletePost = (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, jwtSecurity);
@@ -40,6 +46,7 @@ exports.deletePost = (req, res) => {
         })
 };
 
+//Fonction suppression de post administrateur
 exports.deletePostAdmin = (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, jwtSecurity);
@@ -56,6 +63,7 @@ exports.deletePostAdmin = (req, res) => {
     }
 };
 
+//Fonction voir tous les commentaires
 exports.comment = (req, res) => {
     let postId = req.params.id;
     let sqlInserts = [postId];
@@ -65,6 +73,7 @@ exports.comment = (req, res) => {
         });
 };
 
+//Fonction créer un commentaire
 exports.createCom = (req, res) => {
     let userId = req.body.userId;
     const postId = req.params.id;
@@ -76,6 +85,7 @@ exports.createCom = (req, res) => {
         })
 };
 
+//Fonction modifié un commentaire
 exports.updateCom = (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, jwtSecurity);
@@ -94,6 +104,7 @@ exports.updateCom = (req, res) => {
         })
 };
 
+//Fonction suppression commentaire
 exports.deleteCom = (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, jwtSecurity);
@@ -111,6 +122,7 @@ exports.deleteCom = (req, res) => {
         })
 };
 
+//Fonction suppression commentaire administrateur
 exports.deleteComAdmin = (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, jwtSecurity);

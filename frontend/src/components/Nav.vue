@@ -15,6 +15,7 @@ export default {
     }
   },
   methods : {
+    //Fonction router
     sign : function () {
       this.$router.push('/sign')
       },

@@ -1,12 +1,18 @@
+//Constante qui appel la base de donnée
 const db = require('../dbconfig');
+//Constante qui appel mysql
 const mysql = require('mysql');
+//Constante qui appel bcrypt
 const bcrypt = require('bcrypt');
+//Constante qui appel jsonwebtoken
 const jwt = require('jsonwebtoken');
+//Constante qui appel la clef de securité
 const jwtSecurity = require('../Security/tokenSecurity')
 
 class userModels {
     constructor() {
     }
+    //Model création utilisateur
     signup(sqlInserts) {
         let insertSql = `INSERT INTO utilisateurs VALUES (NULL, ?,?,?,?, FALSE)`;
         insertSql = mysql.format(insertSql, sqlInserts);
@@ -17,6 +23,7 @@ class userModels {
             })
         }))
     }
+    //Model connexion utilisateur
     login(sqlInserts, pass){
         let sql = `SELECT * FROM utilisateurs WHERE mail= ?`;
         sql = mysql.format(sql, sqlInserts);
@@ -45,6 +52,7 @@ class userModels {
             })
         })
     }
+    //Model voir utilisateur par id
     showUser(sqlInserts) {
         let selectSql = `SELECT id, mail, pass, lname, fname, admin FROM utilisateurs WHERE id = ?`;
         selectSql = mysql.format(selectSql, sqlInserts);
@@ -55,6 +63,7 @@ class userModels {
             })
         })
     }
+    //Model modification utilisateur
     modifyUser(sqlInserts) {
         let updateSql = `UPDATE utilisateurs SET mail = ?, lname = ?, fname = ? WHERE id = ?`;
         updateSql = mysql.format(updateSql, sqlInserts);
@@ -65,6 +74,7 @@ class userModels {
             })
         })
     }
+    //Model suppression utilisateur
     delUser(sqlInserts) {
         let deleteSql = `DELETE FROM utilisateurs WHERE id = ?`;
         deleteSql = mysql.format(deleteSql, sqlInserts);

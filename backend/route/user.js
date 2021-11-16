@@ -1,9 +1,13 @@
+//Constante qui appel express
 const express = require('express');
+//Constante qui appel le router d'express
 const router = express.Router();
+//Constante qui appel la sécurité
 const userToken = require('../Security/token');
-const multer = require('../middleware/multer');
+//Constante qui appel les controllers utilisateurs
 const userCtrl = require("../controllers/user");
 
+//Route utiliser pour les utilisateur
 try {
     router.post('/create', userCtrl.signup);
     router.post('/login', userCtrl.login);

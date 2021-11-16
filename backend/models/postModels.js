@@ -1,10 +1,13 @@
+//Constante qui appel la base de donnée
 const db = require('../dbconfig');
+//Contante qui appel mysql
 const mysql = require('mysql');
 
 class postModels {
     constructor() {
     }
 
+    //Model voir tous les posts
     allPost(sqlInserts){
         let allPost =`SELECT groupomanie.posts.id, groupomanie.posts.userId, groupomanie.posts.com, groupomanie.posts.img, groupomanie.posts.date, groupomanie.utilisateurs.lname, groupomanie.utilisateurs.fname FROM groupomanie.posts JOIN groupomanie.utilisateurs ON groupomanie.posts.userId = groupomanie.utilisateurs.id ORDER BY groupomanie.posts.date DESC`;
         allPost = mysql.format(allPost, sqlInserts)
@@ -15,6 +18,7 @@ class postModels {
             })
         })
     }
+    //Model création post
     createPost(sqlInserts){
         let insertPost = 'INSERT INTO groupomanie.posts VALUES (NULL, ?, ?, ?, NOW())';
         insertPost = mysql.format(insertPost, sqlInserts);
@@ -25,6 +29,7 @@ class postModels {
             })
         })
     }
+    //Model suppression post
     delPost(sqlInserts1, sqlInserts2) {
         let delPost1 = `SELECT * FROM groupomanie.posts WHERE id = ?`;
         delPost1 = mysql.format(delPost1, sqlInserts1);
@@ -44,6 +49,7 @@ class postModels {
             })
         })
     }
+    //Model suppression post administrateur
     delPostAdmin(sqlInserts) {
         let delPostAdmin = `DELETE FROM groupomanie.posts WHERE id = ?`;
         delPostAdmin = mysql.format(delPostAdmin, sqlInserts);
@@ -54,6 +60,7 @@ class postModels {
             })
         })
     }
+    //Model voir tous les commentaires
     comment(sqlInserts){
         let comment = `SELECT groupomanie.comments.content, groupomanie.comments.date, groupomanie.comments.id, groupomanie.comments.userId, groupomanie.utilisateurs.fname, groupomanie.utilisateurs.lname FROM groupomanie.comments JOIN groupomanie.utilisateurs ON groupomanie.comments.userId = groupomanie.utilisateurs.id WHERE postId = ? ORDER BY groupomanie.comments.date`;
         comment = mysql.format(comment, sqlInserts);
@@ -64,6 +71,7 @@ class postModels {
             })
         })
     }
+    //Model création commentaire
     createCom(sqlInserts) {
         let insertCom = `INSERT INTO groupomanie.comments VALUES (NULL, ?, ?, NOW(), ?)`;
         insertCom = mysql.format(insertCom, sqlInserts);
@@ -74,6 +82,7 @@ class postModels {
             })
         })
     }
+    //Model modification commentaire
     modifyCom(sqlInserts1, sqlInserts2) {
         let upCom1 = `SELECT * FROM groupomanie.comments WHERE id = ?`;
         upCom1 = mysql.format(upCom1, sqlInserts1);
@@ -93,6 +102,7 @@ class postModels {
             })
         });
     }
+    //Model suppression commentaire
     delCom(sqlInserts1, sqlInserts2) {
         let delCom1 = `SELECT * FROM groupomanie.comments WHERE id = ?`;
         delCom1 = mysql.format(delCom1, sqlInserts1);
@@ -112,6 +122,7 @@ class postModels {
             });
         })
     }
+    //Model suppression commentaire administrateur
     delComAdmin(sqlInserts) {
         let delComAdmin = `DELETE FROM groupomanie.comments WHERE id = ?`;
         delComAdmin = mysql.format(delComAdmin, sqlInserts);

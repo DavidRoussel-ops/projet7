@@ -50,6 +50,7 @@ export default {
     }
   },
   methods : {
+    //Fonction modifier un utilisateur
     putUser() {
       this.userPutIn = JSON.stringify(this.userPut)
       axios.put('http://localhost:3000/users/', this.userPutIn, {headers : {'Content-Type' : 'application/json', Authorization : 'Bearer ' + localStorage.token}})
@@ -62,6 +63,7 @@ export default {
         console.log(err)
       })
     },
+    //Fonction suppression utilisateur
     delUser() {
       axios.delete('http://localhost:3000/users/', {headers : {Authorization : 'Bearer ' + localStorage.token}})
       .then(response => {
@@ -76,6 +78,7 @@ export default {
     },
   },
   mounted() {
+    //Afficher donnée utilisateur
     this.userId = localStorage.userId;
     axios.get('http://localhost:3000/users/', {headers : {Authorization : 'Bearer ' + localStorage.token}})
     .then(response => {

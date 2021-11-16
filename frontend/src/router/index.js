@@ -1,3 +1,4 @@
+//Imports des components
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../components/Home'
@@ -8,6 +9,7 @@ import Profil from '../components/Profil'
 
 Vue.use(VueRouter)
 
+//Route utiliser par vue
 const routes = [
   {
     path: '/',

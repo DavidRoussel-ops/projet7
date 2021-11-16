@@ -23,17 +23,21 @@ export default {
     }
   },
   methods : {
+    //Fonction afficher formulaire
     showNewPost() {
       this.formPost = true;
       this.btnPost = false;
     },
+    //Fonction fermer formulaire
     exitNewPost() {
       this.formPost = false;
       this.btnPost = true;
     },
+    //Fonction selection fichier
     selectFile() {
       this.file = this.$refs.file.files[0];
     },
+    //Fonction créer un post
     addPost() {
       const fd = new FormData();
       fd.append('com', document.getElementById('com').value);

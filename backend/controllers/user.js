@@ -1,11 +1,16 @@
+//Contante qui appel jsonwebtoken
 const jwt = require('jsonwebtoken');
+//Contante qui appel la clef de securité
 const jwtSecurity = require('../Security/tokenSecurity')
+//Constante qui appel bcrypt
 const bcrypt = require('bcrypt');
+//Constante qui appel les models utilisateur
 const userModels = require('../models/userModels');
 require('dotenv').config();
 
 let models = new userModels();
 
+//Fonction crétion utilisateur
 exports.signup = (req, res) => {
     const mail = req.body.mail;
     const pass = req.body.pass;
@@ -32,6 +37,7 @@ exports.signup = (req, res) => {
     }
 };
 
+//Fonction connexion utilisateur
 exports.login = (req, res) => {
     const mail = req.body.mail;
     const pass = req.body.pass;
@@ -46,6 +52,7 @@ exports.login = (req, res) => {
 
 }
 
+//Fonction voir un utilisateur par son id
 exports.showUserById = (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, jwtSecurity);
@@ -61,6 +68,7 @@ exports.showUserById = (req, res) => {
         })
 };
 
+//Fonction modification utilisateur
 exports.updateUser = (req, res) => {
     const mail = req.body.mail;
     const lastName = req.body.lname;
@@ -79,6 +87,7 @@ exports.updateUser = (req, res) => {
         })
 };
 
+//Fonction suppression utilisateur
 exports.deleteUser = (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, jwtSecurity);

@@ -33,6 +33,7 @@ export default {
     }
   },
   methods : {
+    //Fonction connexion utilisateur
     sendLog() {
       this.dataLogGood = JSON.stringify(this.dataLog)
       axios.post('http://localhost:3000/users/login', this.dataLogGood, {headers : {'Content-Type' : 'application/json'}})

@@ -13,6 +13,7 @@ export default {
     }
   },
   methods : {
+    //Fonction router
     forum : function () {
       this.$router.push('/groupomania')
     },

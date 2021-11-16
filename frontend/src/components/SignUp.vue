@@ -34,6 +34,7 @@ export default {
     }
   },
   methods : {
+    //Fonction création utilisateur
     sendSign() {
       this.dataSignGood = JSON.stringify(this.dataSign)
       axios.post('http://localhost:3000/users/create', this.dataSignGood, {headers : {'Content-Type' : 'application/json'}})

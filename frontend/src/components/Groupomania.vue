@@ -95,6 +95,7 @@ export default {
     }
   },
   methods : {
+    //Fonction voir les commentaires
     getComment(postId) {
       this.postId = postId;
       axios.get('http://localhost:3000/posts/' + postId + '/comments', {headers : {Authorization : 'Bearer ' + localStorage.token}})
@@ -104,9 +105,11 @@ export default {
         this.seeCom = true;
       })
     },
+    //Fonction afficher formulaire
     addComment() {
       this.addCom = true;
     },
+    //Fonctions fermer formulaires
     endCom() {
       this.seeCom = false;
     },
@@ -116,12 +119,14 @@ export default {
     endPutCom() {
       this.formPutCom = false;
     },
+    //Fonction récupération information
     comPut(comContent, comId, comUserId) {
       this.dataPutCom.content = comContent;
       this.dataPutCom.id = comId;
       this.dataPutCom.userId = comUserId;
       this.formPutCom = true;
     },
+    //Fonction crée un commentaire
     sendComment(postId) {
       this.dataNewComment.userId = this.userId;
       this.dataCommentSend = JSON.stringify(this.dataNewComment)
@@ -137,6 +142,7 @@ export default {
             console.log(error)
           })
     },
+    //Fonction modifié commentaire
     putCom(commentId) {
       this.commentId = commentId;
       this.dataComPut = JSON.stringify(this.dataPutCom);
@@ -153,6 +159,7 @@ export default {
         console.log(err)
       })
     },
+    //Fonction suppression post
     delPost(postId) {
       this.postId = postId;
       axios.delete('http://localhost:3000/posts/' + postId, {headers : {Authorization : 'Bearer ' + localStorage.token}})
@@ -162,6 +169,7 @@ export default {
         window.location.reload();
       })
     },
+    //Fonction suppression post administrateur
     delPostAdmin(postId) {
       axios.delete('http://localhost:3000/posts/admin/' + postId, {headers : {Authorization : 'Bearer ' + localStorage.token}})
       .then(response => {
@@ -170,6 +178,7 @@ export default {
         window.location.reload();
       })
     },
+    //Fonction suppression commentaire
     delCom(comId) {
       this.dataNewComment.id = comId;
       axios.delete('http://localhost:3000/posts/comments/' + comId, {headers : {Authorization : 'Bearer ' + localStorage.token}})
@@ -179,6 +188,7 @@ export default {
         window.location.reload();
       })
     },
+    //Fonction suppression commentaire administrateur
     delComAdmin(comId) {
       axios.delete('http://localhost:3000/posts/admin/comments/' + comId, {headers : {Authorization : 'Bearer ' + localStorage.token}})
           .then(response => {
@@ -189,6 +199,7 @@ export default {
     },
   },
   mounted() {
+    //Voir tous les posts
     this.userId = localStorage.userId;
     axios.get('http://localhost:3000/posts', {headers : {Authorization : 'Bearer ' + localStorage.token}})
     .then(response => {
@@ -198,6 +209,7 @@ export default {
     .catch(err => {
       console.log(err)
     })
+    //Voir les information utilisateurs
     axios.get('http://localhost:3000/users/', {headers : {Authorization : 'Bearer ' + localStorage.token}})
     .then(response => {
       let userData = JSON.parse(response.data);
