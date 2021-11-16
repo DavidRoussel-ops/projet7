@@ -1,14 +1,14 @@
 # Groupomania
 
-##But
+## But
 
 Créer un réseau social interne pour les employés de Groupomania.  
 Le but de cet outil est de faciliter la communication entre collègues.  
 Cette application permet de partager des photos et de les commenters.  
 
-##Stack
+## Stack
 
-###Frontend
+### Frontend
 
 * AXIOS : 0.24.0
 * CORE-JS : 3.6.5
@@ -17,7 +17,7 @@ Cette application permet de partager des photos et de les commenters.
 * VUE-ROUTER : 3.2.0
 * VUEX : 3.4.0
 
-###Backend
+### Backend
 
 * BCRYPT : 5.0.1
 * BODY-PARSER : 1.19.0
@@ -40,9 +40,9 @@ Cette application permet de partager des photos et de les commenters.
 * SAVE : 2.4.0
 * TOOBUSY-JS : 0.5.1
 
-##Instalation
+## Instalation
 
-###Base de donnée
+### Base de donnée
 
 * Enregistrer le fichier `groupomanie_database.sql` qui se trouve dans le dossier backend.
 * Démarrer votre client MySQL et connectez-vous.
@@ -51,18 +51,18 @@ Cette application permet de partager des photos et de les commenters.
 
 Pour importer la base données, veiller à écrire le chemin d'accès complet ou placer le directement là où vous lancez votre terminal.
 
-###Serveur backend
+### Serveur backend
 
 * Dans le terminal placez-vous sur le dossier backend et installer avec la commande.`npm install`  
 * Démarrer le serveur backend avec la commande `node server.js`
 
-###Serveur frontend
+### Serveur frontend
 
 * Dans le terminal placez-vous sur le dossier frontend et installer Vue client avec la commande `npm install -g @vue/cli`  
 * Installer ensuite le dossier avec `npm install`
 * Démarrer le serveur front avec la commande `npm run serve`
 
-##Note de securité
+## Note de securité
 
 Pour une question de securité la totalité du code de l'application n'est pas disponible.  
 Pour plus d'information veuillez contacter le responsable projet à cette adresse  
