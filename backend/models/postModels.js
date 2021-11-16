@@ -33,11 +33,11 @@ class postModels {
                 if (err) throw err;
                 if (sqlInserts2[1] === result[0].userId) {
                     let delPost2 = `DELETE FROM groupomanie.posts WHERE id = ? AND userId = ?`;
-                    delPost2 = mysql.format(delPost2, sqlInserts2);
-                    db.query(delPost2, function (err, result) {
-                        if (err) throw err;
-                        resolve({ message : 'Post supprimer avec succès'});
-                    })
+                        delPost2 = mysql.format(delPost2, sqlInserts2);
+                        db.query(delPost2, function (err, result) {
+                            if (err) throw err;
+                            resolve({ message : 'Post supprimer avec succès'});
+                        })
                 } else {
                     reject({ error : 'Post non supprimé'})
                 }
