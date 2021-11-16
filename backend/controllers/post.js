@@ -1,5 +1,3 @@
-const db = require('../dbconfig');
-const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 const jwtSecurity = require('../Security/tokenSecurity');
 const PostModels = require('../models/postModels');
@@ -32,14 +30,14 @@ exports.deletePost = (req, res) => {
     const postId = req.params.id;
     let sqlInserts1 = [postId];
     let sqlInserts2 = [postId, userId];
-        postModels.delPost(sqlInserts1, sqlInserts2)
-            .then((response) => {
-                res.status(200).json(JSON.stringify(response));
-            })
-            .catch((error) => {
-                console.log(error);
-                res.status(400).json(JSON.stringify(error));
-            })
+    postModels.delPost(sqlInserts1, sqlInserts2)
+        .then((response) => {
+            res.status(200).json(JSON.stringify(response));
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(400).json(JSON.stringify(error));
+        })
 };
 
 exports.deletePostAdmin = (req, res) => {

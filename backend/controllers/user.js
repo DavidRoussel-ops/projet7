@@ -1,5 +1,3 @@
-const db = require('../dbconfig');
-const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 const jwtSecurity = require('../Security/tokenSecurity')
 const bcrypt = require('bcrypt');
@@ -13,19 +11,25 @@ exports.signup = (req, res) => {
     const pass = req.body.pass;
     const lastName = req.body.lname;
     const firstName = req.body.fname;
-    bcrypt.hash(pass, 10)
-        .then(hash => {
-            let sqlInserts = [mail, hash, lastName, firstName];
-            models.signup(sqlInserts)
-                .then((response) => {
-                    res.status(201).json(JSON.stringify(response))
-                })
-                .catch((error) => {
-                    console.log(error);
-                    res.status(400).json({error})
-                })
-        })
-        .catch(error => res.status(500).json(error));
+    if (/[a-z]/ && /[A-Z]/ && /[1-9]/ && /[&$£%!§]/.test(pass) === true && pass.length >= 8) {
+        bcrypt.hash(pass, 10)
+            .then(hash => {
+                let sqlInserts = [mail, hash, lastName, firstName];
+                models.signup(sqlInserts)
+                    .then((response) => {
+                        res.status(201).json(JSON.stringify(response))
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        res.status(400).json({error})
+                    })
+            })
+            .catch(error => res.status(500).json(error));
+    } else {
+        if (/[a-z]/ && /[A-Z]/ && /[1-9]/ && /[&$£%!§]/.test(pass) === false && pass.length <= 8) {
+            console.log("Veuillez renseigner un mots de passe contenant aux moins une majuscule, une minuscule, un symbole '&$£%!§' et aux moins 8 caractères.")
+        }
+    }
 };
 
 exports.login = (req, res) => {
