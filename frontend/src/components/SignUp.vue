@@ -4,12 +4,13 @@
     <img class="img-home" src="../assets/icon-left-font-monochrome-white.png" alt="fond acceuil"/>
     <div class="form-sign-log">
   <form class="form-sign">
-    <label><input class="input" v-model="dataSign.mail" placeholder="e-mail"></label><br>
-    <label><input class="input" v-model="dataSign.pass" placeholder="mots de passe"></label><br>
-    <label><input class="input" v-model="dataSign.lname" placeholder="Nom"></label><br>
-    <label><input class="input" v-model="dataSign.fname" placeholder="Prénom"></label><br>
+    <label><input class="input" v-model="dataSign.mail" type="text" placeholder="e-mail"></label><br>
+    <label><input class="input" v-model="dataSign.pass" type="password" placeholder="mots de passe"></label><br>
+    <label><input class="input" v-model="dataSign.lname" type="text" placeholder="Nom"></label><br>
+    <label><input class="input" v-model="dataSign.fname" type="text" placeholder="Prénom"></label><br>
     <button class="btn-sign-log" @click="sendSign()">Inscription</button>
   </form>
+      <p class="info">{{ message }}</p>
     </div>
   </div>
 </template>
@@ -31,21 +32,22 @@ export default {
         fname: '',
       },
       dataSignGood : '',
+      message : 'Veuillez renseigner un mots de passe contenant aux moins une majuscule, une minuscule, un chiffre, un symbole \'&$£%!§\' et aux moins 8 caractères.',
     }
   },
   methods : {
     //Fonction création utilisateur
     sendSign() {
-      this.dataSignGood = JSON.stringify(this.dataSign)
-      axios.post('http://localhost:3000/users/create', this.dataSignGood, {headers : {'Content-Type' : 'application/json'}})
-      .then(response => {
-        let sign = JSON.parse(response.data);
-        console.log(sign);
-        this.$router.push('/log')
-      })
-      .catch(error => {
-        console.log(error);
-      })
+        this.dataSignGood = JSON.stringify(this.dataSign)
+        axios.post('http://localhost:3000/users/create', this.dataSignGood, {headers: {'Content-Type': 'application/json'}})
+            .then(response => {
+              let sign = JSON.parse(response.data);
+              console.log(sign);
+              this.$router.push('/log')
+            })
+            .catch(error => {
+              console.log(error);
+            })
     }
   }
 }
@@ -88,6 +90,14 @@ export default {
     background-color: white;
   }
 
+  .info {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    width: 80%;
+    color: #222831;
+  }
+
 }
 
 @media screen and (max-width: 1300px) {
@@ -124,6 +134,15 @@ export default {
     height: 30px;
     left: 10%;
     background-color: white;
+  }
+
+  .info {
+    bottom: 0;
+    display: block;
+    margin: 300px auto 0;
+    text-align: center;
+    width: 80%;
+    color: #222831;
   }
 
 }
