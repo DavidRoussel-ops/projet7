@@ -4,10 +4,9 @@
     <img class="img-home" src="../assets/icon-left-font-monochrome-white.png" alt="fond acceuil"/>
     <div class="form-sign-log">
   <form class="form-log">
-    <label><input class="input" v-model="dataLog.mail" placeholder="e-mail"></label><br>
-    <label><input class="input" v-model="dataLog.pass" placeholder="mots de passe"></label><br>
+    <label><input class="input" v-model="dataLog.mail" type="text" placeholder="e-mail"></label><br>
+    <label><input class="input" v-model="dataLog.pass" type="password" placeholder="mots de passe"></label><br>
     <button class="btn-sign-log" @click="sendLog()">Connexion</button>
-    <p v-if="goodLog">{{ message }}</p>
   </form>
     </div>
   </div>
@@ -28,8 +27,6 @@ export default {
         pass : '',
       },
       dataLogGood : '',
-      goodLog : false,
-      message : '',
     }
   },
   methods : {
@@ -46,8 +43,6 @@ export default {
           })
           .catch(error => {
             console.log(error);
-            this.goodLog = true;
-            this.message = error;
           })
     }
   }
