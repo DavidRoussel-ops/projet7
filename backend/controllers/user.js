@@ -32,7 +32,7 @@ exports.signup = (req, res) => {
             .catch(error => res.status(500).json(error));
     } else {
         if (/[a-z]/ && /[A-Z]/ && /[1-9]/ && /[&$£%!§]/.test(pass) === false && pass.length <= 8) {
-            console.log("Veuillez renseigner un mots de passe contenant aux moins une majuscule, une minuscule, un symbole '&$£%!§' et aux moins 8 caractères.")
+            console.log("Veuillez renseigner un mots de passe contenant aux moins une majuscule, une minuscule, un chiffre, un symbole '&$£%!§' et aux moins 8 caractères.")
         }
     }
 };
