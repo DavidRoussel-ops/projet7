@@ -10,10 +10,10 @@ require('dotenv').config();
 const postRoutes = require('./route/post');
 const userRoutes = require('./route/user');
 let corsOption = {
-    origin : "http://localhost:8080"
+    origin: "http://localhost:8080"
 }
 
-const port = process.env.PORT;
+const port = process.env.DB_PORT;
 
 //Header utiliser par l'application.
 app.use(((req, res, next) => {
@@ -26,7 +26,7 @@ app.use(((req, res, next) => {
 app.use(cors(corsOption));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended : true }));
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/posts', postRoutes);
 app.use('/users', userRoutes);

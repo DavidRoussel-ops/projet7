@@ -59,7 +59,7 @@ exports.deletePostAdmin = (req, res) => {
                 res.status(200).json(JSON.stringify(response));
             })
     } else {
-        res.status(400).json({ error : 'Requête non authorisée'})
+        res.status(400).json({error: 'Requête non authorisée'})
     }
 };
 
@@ -135,6 +135,6 @@ exports.deleteComAdmin = (req, res) => {
                 res.status(200).json(JSON.stringify(response));
             })
     } else {
-        res.status(400).json({ error : 'Requête non authorisée'})
+        res.status(400).json({error: 'Requête non authorisée'})
     }
 };
