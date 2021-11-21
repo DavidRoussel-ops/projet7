@@ -51,6 +51,14 @@ Cette application permet de partager des photos et de les commenters.
 
 Pour importer la base données, veiller à écrire le chemin d'accès complet ou placer le directement là où vous lancez votre terminal.
 
+###Environnement
+
+Dans le fichier `.env` entrez vos informations de connexion  
+`DB_PORT=` + votre port  
+`DB_NAME=` + le nom de votre BDD  
+`DB_USER=` + votre nom utilisateur MySQL  
+`DB_PASSWORD=` + votre mots de passe MySQL  
+
 ### Serveur backend
 
 * Dans le terminal placez-vous sur le dossier backend et installer avec la commande.`npm install`  
