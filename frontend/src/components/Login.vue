@@ -1,13 +1,13 @@
 <template>
   <div>
-  <Nav/>
+    <Nav/>
     <img class="img-home" src="../assets/icon-left-font-monochrome-white.png" alt="fond acceuil"/>
     <div class="form-sign-log">
-  <form class="form-log">
-    <label><input class="input" v-model="dataLog.mail" type="text" placeholder="e-mail"></label><br>
-    <label><input class="input" v-model="dataLog.pass" type="password" placeholder="mots de passe"></label><br>
-    <button class="btn-sign-log" @click="sendLog()">Connexion</button>
-  </form>
+      <form class="form-log">
+        <label><input class="input" v-model="dataLog.mail" type="text" placeholder="e-mail"></label><br>
+        <label><input class="input" v-model="dataLog.pass" type="password" placeholder="mots de passe"></label><br>
+        <button class="btn-sign-log" @click="sendLog()">Connexion</button>
+      </form>
     </div>
   </div>
 </template>
@@ -17,23 +17,23 @@ import axios from 'axios'
 import Nav from "@/components/Nav";
 
 export default {
-  components : {
-    Nav : Nav,
+  components: {
+    Nav: Nav,
   },
-  data(){
-    return{
-      dataLog : {
-        mail : '',
-        pass : '',
+  data() {
+    return {
+      dataLog: {
+        mail: '',
+        pass: '',
       },
-      dataLogGood : '',
+      dataLogGood: '',
     }
   },
-  methods : {
+  methods: {
     //Fonction connexion utilisateur
     sendLog() {
       this.dataLogGood = JSON.stringify(this.dataLog)
-      axios.post('http://localhost:3000/users/login', this.dataLogGood, {headers : {'Content-Type' : 'application/json'}})
+      axios.post('http://localhost:3000/users/login', this.dataLogGood, {headers: {'Content-Type': 'application/json'}})
           .then(response => {
             let log = JSON.parse(response.data);
             localStorage.userId = log.userId;

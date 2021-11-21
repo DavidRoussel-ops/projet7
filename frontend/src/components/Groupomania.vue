@@ -1,30 +1,38 @@
 <template>
-    <div class="conteneur">
-      <navhome v-if="userGet.admin === 0"/>
-      <post/>
-      <div class="style-post" v-for="post in allPosts" v-bind:key="post">
-        <img class="img-post" v-if="post.img" :src="post.img" :alt="post.com">
-        <div class="info-post">
+  <div class="conteneur">
+    <navhome/>
+    <post/>
+    <div class="style-post" v-for="post in allPosts" v-bind:key="post">
+      <img class="img-post" v-if="post.img" :src="post.img" :alt="post.com">
+      <div class="info-post">
         <p>{{ post.com }}</p>
         <p>Un post de {{ post.lname }} {{ post.fname }}</p>
-        </div>
-        <div class="btn-post-choice">
-          <button class="btn-warning" v-if="post.userId === userGet.id" @click="delPost(post.id)">Supprimer</button>
-          <button v-if="userGet.admin === 1" @click="delPostAdmin(post.id)">Supprimer</button>
-        <button class="btn-show-com" @click="getComment(post.id)">Voir les commentaires</button><br>
-        </div>
-          <div class="style-comment" v-if="seeCom">
-            <button class="btn-close" @click="endCom()">X</button>
-          <div v-if="postId === post.id">
+      </div>
+      <div class="btn-post-choice">
+        <button class="btn-warning" v-if="post.userId === userGet.id && userGet.admin === 0" @click="delPost(post.id)">
+          Supprimer
+        </button>
+        <button class="btn-warning" v-if="userGet.admin === 1" @click="delPostAdmin(post.id)">Supprimer</button>
+        <button class="btn-show-com" @click="getComment(post.id)">Voir les commentaires</button>
+        <br>
+      </div>
+      <div class="style-comment" v-if="seeCom">
+        <button class="btn-close" @click="endCom()">X</button>
+        <div v-if="postId === post.id">
           <div v-for="comments in allComments" v-bind:key="comments">
             <div class="info-post">
-            <p>{{ comments.content }}</p>
-            <p>Commenté par {{ comments.lname }} {{ comments.fname }}</p>
+              <p>{{ comments.content }}</p>
+              <p>Commenté par {{ comments.lname }} {{ comments.fname }}</p>
             </div>
             <div class="btn-post-choice">
-              <button class="btn-warning" v-if="userGet.admin === 1" @click="delComAdmin(comments.id)">Supprimer</button>
-              <button class="btn-warning" v-if="comments.userId === userGet.id" @click="delCom(comments.id)">Supprimer</button>
-            <button class="btn-show-com" v-if="comments.userId === userGet.id" @click="comPut(comments.content, comments.id, comments.userId)">Modifier</button>
+              <button class="btn-warning" v-if="userGet.admin === 1" @click="delComAdmin(comments.id)">Supprimer
+              </button>
+              <button class="btn-warning" v-if="comments.userId === userGet.id && userGet.admin === 0"
+                      @click="delCom(comments.id)">Supprimer
+              </button>
+              <button class="btn-show-com" v-if="comments.userId === userGet.id"
+                      @click="comPut(comments.content, comments.id, comments.userId)">Modifier
+              </button>
             </div>
             <form v-if="formPutCom">
               <button class="btn-close" @click="endPutCom()">X</button>
@@ -34,16 +42,17 @@
           </div>
         </div>
         <div v-if="postId === post.id">
-        <button v-if="seeCom" class="btn-add-com" @click="addComment(post.id)">Ajouter un commentaire</button>
-        <form v-if="addCom">
-          <button class="btn-close" @click="endComment()">X</button>
-          <label for="newContent"></label><input class="input-add-com" id="newContent" v-model="dataNewComment.content" type="text"><br>
-          <button class="btn-add-com" @click="sendComment(post.id)">Envoyer</button>
-        </form>
+          <button v-if="seeCom" class="btn-add-com" @click="addComment(post.id)">Ajouter un commentaire</button>
+          <form v-if="addCom">
+            <button class="btn-close" @click="endComment()">X</button>
+            <label for="newContent"></label><input class="input-add-com" id="newContent"
+                                                   v-model="dataNewComment.content" type="text"><br>
+            <button class="btn-add-com" @click="sendComment(post.id)">Envoyer</button>
+          </form>
         </div>
-          </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -53,57 +62,57 @@ import navhome from "@/components/NavHome";
 import post from '@/components/Post';
 
 export default {
-  components : {
-    post : post,
-    navhome : navhome,
+  components: {
+    post: post,
+    navhome: navhome,
   },
   data() {
     return {
-      addCom : false,
-      formPutCom : false,
-      seeCom : false,
-      commentId : '',
-      userId : '',
-      postId : '',
-      userGet : {
-        mail : '',
-        pass : '',
+      addCom: false,
+      formPutCom: false,
+      seeCom: false,
+      commentId: '',
+      userId: '',
+      postId: '',
+      userGet: {
+        mail: '',
+        pass: '',
         lname: '',
         fname: '',
-        id : '',
-        admin : '',
+        id: '',
+        admin: '',
       },
       dataGetUsers: {
-        mail : '',
-        lname : '',
-        fname : '',
+        mail: '',
+        lname: '',
+        fname: '',
       },
-      dataNewComment : {
-        id : '',
-        content : '',
-        userId : '',
+      dataNewComment: {
+        id: '',
+        content: '',
+        userId: '',
       },
-      dataPutCom : {
-        id : '',
-        content : '',
-        userId : '',
+      dataPutCom: {
+        id: '',
+        content: '',
+        userId: '',
       },
-      dataCommentSend : '',
-      dataComPut : '',
-      allPosts : [],
-      allComments : [],
+      dataCommentSend: '',
+      dataComPut: '',
+      allPosts: [],
+      allComments: [],
     }
   },
-  methods : {
+  methods: {
     //Fonction voir les commentaires
     getComment(postId) {
       this.postId = postId;
-      axios.get('http://localhost:3000/posts/' + postId + '/comments', {headers : {Authorization : 'Bearer ' + localStorage.token}})
-      .then(response => {
-        let comments = JSON.parse(response.data);
-        this.allComments = comments;
-        this.seeCom = true;
-      })
+      axios.get('http://localhost:3000/posts/' + postId + '/comments', {headers: {Authorization: 'Bearer ' + localStorage.token}})
+          .then(response => {
+            let comments = JSON.parse(response.data);
+            this.allComments = comments;
+            this.seeCom = true;
+          })
     },
     //Fonction afficher formulaire
     addComment() {
@@ -130,7 +139,12 @@ export default {
     sendComment(postId) {
       this.dataNewComment.userId = this.userId;
       this.dataCommentSend = JSON.stringify(this.dataNewComment)
-      axios.post('http://localhost:3000/posts/' + postId + '/comments', this.dataCommentSend ,{headers : {'Content-Type' : 'application/json', Authorization : 'Bearer ' + localStorage.token}})
+      axios.post('http://localhost:3000/posts/' + postId + '/comments', this.dataCommentSend, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.token
+        }
+      })
           .then(response => {
             let dataComment = JSON.parse(response.data);
             console.log(dataComment);
@@ -146,51 +160,56 @@ export default {
     putCom(commentId) {
       this.commentId = commentId;
       this.dataComPut = JSON.stringify(this.dataPutCom);
-      axios.put('http://localhost:3000/posts/comments/' + commentId , this.dataComPut, {headers : {'Content-Type' : 'application/json', Authorization : 'Bearer ' + localStorage.token}})
-      .then(response => {
-        let putComData = JSON.parse(response.data);
-        console.log(putComData);
-        this.dataPutCom.content = '';
-        this.dataPutCom.userId = '';
-        this.dataPutCom.id = '';
-        window.location.reload();
+      axios.put('http://localhost:3000/posts/comments/' + commentId, this.dataComPut, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.token
+        }
       })
-      .catch(err => {
-        console.log(err)
-      })
+          .then(response => {
+            let putComData = JSON.parse(response.data);
+            console.log(putComData);
+            this.dataPutCom.content = '';
+            this.dataPutCom.userId = '';
+            this.dataPutCom.id = '';
+            window.location.reload();
+          })
+          .catch(err => {
+            console.log(err)
+          })
     },
     //Fonction suppression post
     delPost(postId) {
       this.postId = postId;
-      axios.delete('http://localhost:3000/posts/' + postId, {headers : {Authorization : 'Bearer ' + localStorage.token}})
-      .then(response => {
-        let delData = JSON.parse(response.data);
-        console.log(delData);
-        window.location.reload();
-      })
+      axios.delete('http://localhost:3000/posts/' + postId, {headers: {Authorization: 'Bearer ' + localStorage.token}})
+          .then(response => {
+            let delData = JSON.parse(response.data);
+            console.log(delData);
+            window.location.reload();
+          })
     },
     //Fonction suppression post administrateur
     delPostAdmin(postId) {
-      axios.delete('http://localhost:3000/posts/admin/' + postId, {headers : {Authorization : 'Bearer ' + localStorage.token}})
-      .then(response => {
-        let delDataAdmin = JSON.parse(response.data);
-        console.log(delDataAdmin);
-        window.location.reload();
-      })
+      axios.delete('http://localhost:3000/posts/admin/' + postId, {headers: {Authorization: 'Bearer ' + localStorage.token}})
+          .then(response => {
+            let delDataAdmin = JSON.parse(response.data);
+            console.log(delDataAdmin);
+            window.location.reload();
+          })
     },
     //Fonction suppression commentaire
     delCom(comId) {
       this.dataNewComment.id = comId;
-      axios.delete('http://localhost:3000/posts/comments/' + comId, {headers : {Authorization : 'Bearer ' + localStorage.token}})
-      .then(response => {
-        let delComData = JSON.parse(response.data);
-        console.log(delComData);
-        window.location.reload();
-      })
+      axios.delete('http://localhost:3000/posts/comments/' + comId, {headers: {Authorization: 'Bearer ' + localStorage.token}})
+          .then(response => {
+            let delComData = JSON.parse(response.data);
+            console.log(delComData);
+            window.location.reload();
+          })
     },
     //Fonction suppression commentaire administrateur
     delComAdmin(comId) {
-      axios.delete('http://localhost:3000/posts/admin/comments/' + comId, {headers : {Authorization : 'Bearer ' + localStorage.token}})
+      axios.delete('http://localhost:3000/posts/admin/comments/' + comId, {headers: {Authorization: 'Bearer ' + localStorage.token}})
           .then(response => {
             let delComDataAdmin = JSON.parse(response.data);
             console.log(delComDataAdmin);
@@ -201,33 +220,33 @@ export default {
   mounted() {
     //Voir tous les posts
     this.userId = localStorage.userId;
-    axios.get('http://localhost:3000/posts', {headers : {Authorization : 'Bearer ' + localStorage.token}})
-    .then(response => {
-      let posts = JSON.parse(response.data);
-      this.allPosts = posts;
-    })
-    .catch(err => {
-      console.log(err)
-    })
+    axios.get('http://localhost:3000/posts', {headers: {Authorization: 'Bearer ' + localStorage.token}})
+        .then(response => {
+          let posts = JSON.parse(response.data);
+          this.allPosts = posts;
+        })
+        .catch(err => {
+          console.log(err)
+        })
     //Voir les information utilisateurs
-    axios.get('http://localhost:3000/users/', {headers : {Authorization : 'Bearer ' + localStorage.token}})
-    .then(response => {
-      let userData = JSON.parse(response.data);
-      this.userGet.mail = userData[0].mail;
-      this.userGet.pass = userData[0].pass;
-      this.userGet.lname = userData[0].lname;
-      this.userGet.fname = userData[0].fname;
-      this.userGet.id = userData[0].id;
-      this.userGet.admin = userData[0].admin;
-    })
+    axios.get('http://localhost:3000/users/', {headers: {Authorization: 'Bearer ' + localStorage.token}})
+        .then(response => {
+          let userData = JSON.parse(response.data);
+          this.userGet.mail = userData[0].mail;
+          this.userGet.pass = userData[0].pass;
+          this.userGet.lname = userData[0].lname;
+          this.userGet.fname = userData[0].fname;
+          this.userGet.id = userData[0].id;
+          this.userGet.admin = userData[0].admin;
+        })
   }
 }
 </script>
 
 <style>
-@media screen and (min-width: 1300px){
+@media screen and (min-width: 1300px) {
 
-  .style-post{
+  .style-post {
     border: 1px solid black;
     box-shadow: 5px 5px 5px black;
     background-color: #EEEEEE;
@@ -310,9 +329,9 @@ export default {
 
 }
 
-@media screen and (max-width: 1300px){
+@media screen and (max-width: 1300px) {
 
-  .style-post{
+  .style-post {
     border: 1px solid black;
     box-shadow: 5px 5px 5px black;
     background-color: #EEEEEE;

@@ -7,10 +7,11 @@
 
 <script>
 import Nav from "../components/Nav"
+
 export default {
-components : {
-  'Nav' : Nav,
-}
+  components: {
+    'Nav': Nav,
+  }
 }
 </script>
 
@@ -21,7 +22,7 @@ components : {
     margin: 0;
     padding: 0;
     background-color: #222831;
-    font-family: "Times New Roman",Calibri,serif;
+    font-family: "Times New Roman", Calibri, serif;
   }
 
   .img-home {
@@ -37,7 +38,7 @@ components : {
     margin: 0;
     padding: 0;
     background-color: #222831;
-    font-family: "Times New Roman",Calibri,serif;
+    font-family: "Times New Roman", Calibri, serif;
   }
 
   .img-home {

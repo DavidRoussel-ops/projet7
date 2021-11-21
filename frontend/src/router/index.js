@@ -11,35 +11,35 @@ Vue.use(VueRouter)
 
 //Route utiliser par vue
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/sign',
-    name: 'Inscription',
-    component: SignUp
-  },
-  {
-    path: '/log',
-    name: 'Connexion',
-    component: Login
-  },
-  {
-    path: '/groupomania',
-    name: 'Groupomania',
-    component: Groupomania
-  },
-  {
-    path: '/profil',
-    name: 'Profil',
-    component: Profil
-  },
+    {
+        path: '/',
+        name: 'Home',
+        component: Home
+    },
+    {
+        path: '/sign',
+        name: 'Inscription',
+        component: SignUp
+    },
+    {
+        path: '/log',
+        name: 'Connexion',
+        component: Login
+    },
+    {
+        path: '/groupomania',
+        name: 'Groupomania',
+        component: Groupomania
+    },
+    {
+        path: '/profil',
+        name: 'Profil',
+        component: Profil
+    },
 ]
 
 const router = new VueRouter({
-  routes
+    routes
 })
 
 export default router

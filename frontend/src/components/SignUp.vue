@@ -1,15 +1,15 @@
 <template>
   <div>
-  <Nav/>
+    <Nav/>
     <img class="img-home" src="../assets/icon-left-font-monochrome-white.png" alt="fond acceuil"/>
     <div class="form-sign-log">
-  <form class="form-sign">
-    <label><input class="input" v-model="dataSign.mail" type="text" placeholder="e-mail"></label><br>
-    <label><input class="input" v-model="dataSign.pass" type="password" placeholder="mots de passe"></label><br>
-    <label><input class="input" v-model="dataSign.lname" type="text" placeholder="Nom"></label><br>
-    <label><input class="input" v-model="dataSign.fname" type="text" placeholder="Prénom"></label><br>
-    <button class="btn-sign-log" @click="sendSign()">Inscription</button>
-  </form>
+      <form class="form-sign">
+        <label><input class="input" v-model="dataSign.mail" type="text" placeholder="e-mail"></label><br>
+        <label><input class="input" v-model="dataSign.pass" type="password" placeholder="mots de passe"></label><br>
+        <label><input class="input" v-model="dataSign.lname" type="text" placeholder="Nom"></label><br>
+        <label><input class="input" v-model="dataSign.fname" type="text" placeholder="Prénom"></label><br>
+        <button class="btn-sign-log" @click="sendSign()">Inscription</button>
+      </form>
       <p class="info">{{ message }}</p>
     </div>
   </div>
@@ -20,34 +20,34 @@ import axios from 'axios'
 import Nav from "@/components/Nav";
 
 export default {
-  components : {
-    Nav : Nav,
+  components: {
+    Nav: Nav,
   },
-  data(){
-    return{
-      dataSign : {
-        mail : '',
-        pass : '',
+  data() {
+    return {
+      dataSign: {
+        mail: '',
+        pass: '',
         lname: '',
         fname: '',
       },
-      dataSignGood : '',
-      message : 'Veuillez renseigner un mots de passe contenant aux moins une majuscule, une minuscule, un chiffre, un symbole \'&$£%!§\' et aux moins 8 caractères.',
+      dataSignGood: '',
+      message: 'Veuillez renseigner un mots de passe contenant aux moins une majuscule, une minuscule, un chiffre, un symbole \'&$£%!§\' et aux moins 8 caractères.',
     }
   },
-  methods : {
+  methods: {
     //Fonction création utilisateur
     sendSign() {
-        this.dataSignGood = JSON.stringify(this.dataSign)
-        axios.post('http://localhost:3000/users/create', this.dataSignGood, {headers: {'Content-Type': 'application/json'}})
-            .then(response => {
-              let sign = JSON.parse(response.data);
-              console.log(sign);
-              this.$router.push('/log')
-            })
-            .catch(error => {
-              console.log(error);
-            })
+      this.dataSignGood = JSON.stringify(this.dataSign)
+      axios.post('http://localhost:3000/users/create', this.dataSignGood, {headers: {'Content-Type': 'application/json'}})
+          .then(response => {
+            let sign = JSON.parse(response.data);
+            console.log(sign);
+            this.$router.push('/log')
+          })
+          .catch(error => {
+            console.log(error);
+          })
     }
   }
 }

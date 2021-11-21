@@ -16,13 +16,13 @@ import axios from "axios";
 export default {
   data() {
     return {
-      formPost : false,
-      btnPost : true,
-      file : '',
-      userId : localStorage.userId
+      formPost: false,
+      btnPost: true,
+      file: '',
+      userId: localStorage.userId
     }
   },
-  methods : {
+  methods: {
     //Fonction afficher formulaire
     showNewPost() {
       this.formPost = true;
@@ -43,11 +43,16 @@ export default {
       fd.append('com', document.getElementById('com').value);
       fd.append('file', this.file);
       fd.append('userId', this.userId);
-      axios.post('http://localhost:3000/posts/', fd, {headers : {'Content-Type' : 'multipart/form-data', Authorization : 'Bearer ' + localStorage.token}})
-      .then(response => {
-        console.log(response.data);
-        window.location.reload();
+      axios.post('http://localhost:3000/posts/', fd, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: 'Bearer ' + localStorage.token
+        }
       })
+          .then(response => {
+            console.log(response.data);
+            window.location.reload();
+          })
     }
   }
 }
