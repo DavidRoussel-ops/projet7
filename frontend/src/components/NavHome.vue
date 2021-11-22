@@ -1,8 +1,8 @@
 <template>
   <div class="conteneur-nav">
-    <a href="#" @click="forum"><i class="fas fa-users"></i></a>
-    <a v-if="userGet.admin === 0" href="#" @click="profil"><i class="fas fa-address-card"></i></a>
-    <a href="#" @click="logout"><i class="fas fa-power-off"></i></a>
+    <i class="fas fa-users" @click="forum"></i>
+    <i class="fas fa-address-card" v-if="userGet.admin === 0" @click="profil"></i>
+    <i class="fas fa-power-off" @click="logout"></i>
   </div>
 </template>
 
