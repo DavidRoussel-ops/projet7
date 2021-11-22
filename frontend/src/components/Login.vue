@@ -4,8 +4,8 @@
     <img class="img-home" src="../assets/icon-left-font-monochrome-white.png" alt="fond acceuil"/>
     <div class="form-sign-log">
       <form class="form-log">
-        <label><input class="input" v-model="dataLog.mail" type="text" placeholder="e-mail"></label><br>
-        <label><input class="input" v-model="dataLog.pass" type="password" placeholder="mots de passe"></label><br>
+        <label>E-mail<input id="mail" class="input" v-model="dataLog.mail" type="text"></label><br>
+        <label>Mots de passe<input class="input" v-model="dataLog.pass" type="password"></label><br>
         <button class="btn-sign-log" @click="sendLog()">Connexion</button>
       </form>
     </div>
@@ -60,6 +60,11 @@ export default {
     left: 25%;
   }
 
+  label {
+    display: block;
+    text-align: center;
+  }
+
 }
 
 @media screen and (max-width: 1300px) {
@@ -70,6 +75,11 @@ export default {
     height: 80%;
     top: 20%;
     left: 10%;
+  }
+
+  label {
+    display: block;
+    text-align: center;
   }
 
 }
