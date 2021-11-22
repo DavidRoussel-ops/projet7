@@ -11,9 +11,9 @@
       <div>
         <h2>Modifier mon profil</h2>
         <form>
-          <label><input class="input-put-com" v-model="userPut.mail" placeholder="Modifier E-mail"></label><br>
-          <label><input class="input-put-com" v-model="userPut.lname" placeholder="Modifier Nom"></label><br>
-          <label><input class="input-put-com" v-model="userPut.fname" placeholder="Modifier Prénom"></label><br>
+          <label>E-mail<input class="input-put-com" v-model="userPut.mail"></label><br>
+          <label>Nom<input class="input-put-com" v-model="userPut.lname"></label><br>
+          <label>Prénom<input class="input-put-com" v-model="userPut.fname"></label><br>
           <button class="btn-show-com" @click="putUser()">Modifié</button>
         </form>
       </div>
@@ -127,7 +127,7 @@ export default {
     border-radius: 20px;
     font-size: large;
     color: white;
-    background-color: red;
+    background-color: darkred;
     margin-bottom: 50px;
   }
 
@@ -142,7 +142,7 @@ export default {
     border-radius: 20px;
     margin: 50px auto;
     width: 80%;
-    height: 600px;
+    height: 700px;
     text-align: center;
     font-size: large;
   }
@@ -161,7 +161,7 @@ export default {
     border-radius: 20px;
     font-size: large;
     color: white;
-    background-color: red;
+    background-color: darkred;
     margin-bottom: 50px;
   }
 
