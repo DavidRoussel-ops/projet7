@@ -6,7 +6,7 @@
       <input class="btn-choice" type="file" ref="file" @change="selectFile"/><br>
       <button class="btn-post">Posté</button>
     </form>
-    <button v-if="btnPost" @click="showNewPost" class="btn-new-post"><i class="fas fa-comment"></i></button>
+    <i v-if="btnPost" class="fas fa-comment" @click="showNewPost"></i>
   </div>
 </template>
 
@@ -114,16 +114,15 @@ export default {
     font-size: 40px;
   }
 
-  .btn-new-post {
+  .fa-comment {
     position: fixed;
+    padding: 20px;
     background-color: #FD7014;
     border: 1px solid #222831;
-    color: #EEEEEE;
+    color: #222831;
     border-radius: 50%;
     left: 92%;
-    top: 82%;
-    width: 100px;
-    height: 100px;
+    top: 83%;
     font-size: 50px;
   }
 
@@ -184,23 +183,19 @@ export default {
     font-size: 30px;
   }
 
-  .btn-new-post {
-    position: fixed;
-    background-color: #FD7014;
-    border: 1px solid #222831;
-    color: #EEEEEE;
-    border-radius: 50%;
-    left: 77%;
-    top: 3%;
-    width: 50px;
-    height: 50px;
-  }
-
   .fas {
     margin: 0;
   }
 
   .fa-comment {
+    position: fixed;
+    padding: 20px;
+    background-color: #FD7014;
+    border: 1px solid #222831;
+    color: #222831;
+    border-radius: 50%;
+    left: 77%;
+    top: 2%;
     font-size: 30px;
   }
 
