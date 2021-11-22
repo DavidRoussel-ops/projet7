@@ -44,7 +44,7 @@ Cette application permet de partager des photos et de les commenters.
 
 ### Base de donnée
 
-* Enregistrer le fichier `groupomanie.sql` qui se trouve dans le dossier backend.
+* Enregistrer le fichier `groupomania.sql` qui se trouve dans le dossier backend.
 * Démarrer votre client MySQL et connectez-vous.
 * Lancer la commande `CREATE DATABASE groupomanie`.
 * Quitter votre session avec la commande `exit`.
