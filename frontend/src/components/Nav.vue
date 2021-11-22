@@ -1,8 +1,8 @@
 <template>
   <div class="conteneur-nav">
-    <a href="#" @click="home"><i class="fas fa-home"></i></a>
-    <a href="#" @click="sign"><i class="fas fa-sign-in-alt"></i></a>
-    <a href="#" @click="log"><i class="fas fa-id-badge"></i></a>
+    <i class="fas fa-home" @click="home"></i>
+    <i class="fas fa-sign-in-alt" @click="sign"></i>
+    <i class="fas fa-id-badge" @click="log"></i>
   </div>
 </template>
 
