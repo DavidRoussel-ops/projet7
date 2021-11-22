@@ -4,10 +4,10 @@
     <img class="img-home" src="../assets/icon-left-font-monochrome-white.png" alt="fond acceuil"/>
     <div class="form-sign-log">
       <form class="form-sign">
-        <label><input class="input" v-model="dataSign.mail" type="text" placeholder="e-mail"></label><br>
-        <label><input class="input" v-model="dataSign.pass" type="password" placeholder="mots de passe"></label><br>
-        <label><input class="input" v-model="dataSign.lname" type="text" placeholder="Nom"></label><br>
-        <label><input class="input" v-model="dataSign.fname" type="text" placeholder="Prénom"></label><br>
+        <label>E-mail<input class="input" v-model="dataSign.mail" type="text"></label><br>
+        <label>Mots de passe<input class="input" v-model="dataSign.pass" type="password"></label><br>
+        <label>Nom<input class="input" v-model="dataSign.lname" type="text"></label><br>
+        <label>Prénom<input class="input" v-model="dataSign.fname" type="text"></label><br>
         <button class="btn-sign-log" @click="sendSign()">Inscription</button>
       </form>
       <p class="info">{{ message }}</p>
@@ -63,7 +63,7 @@ export default {
     top: 30%;
     left: 30%;
     width: 40%;
-    height: 40%;
+    height: 50%;
   }
 
   .form-sign {
@@ -78,7 +78,6 @@ export default {
     border-radius: 20px;
     width: 100%;
     height: 20px;
-    margin-bottom: 10px;
   }
 
   .btn-sign-log {
@@ -92,7 +91,7 @@ export default {
 
   .info {
     display: block;
-    margin: 10px auto;
+    margin: 40px auto;
     text-align: center;
     width: 80%;
     color: #222831;
@@ -139,7 +138,7 @@ export default {
   .info {
     bottom: 0;
     display: block;
-    margin: 300px auto 0;
+    margin: 450px auto 0;
     text-align: center;
     width: 80%;
     color: #222831;
