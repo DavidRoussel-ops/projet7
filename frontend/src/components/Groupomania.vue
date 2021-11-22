@@ -277,7 +277,7 @@ export default {
     border-radius: 20px;
     font-size: large;
     color: white;
-    background-color: red;
+    background-color: darkred;
     margin-right: 150px;
   }
 
@@ -363,7 +363,7 @@ export default {
     margin: 10px auto;
     font-size: large;
     color: white;
-    background-color: red;
+    background-color: darkred;
   }
 
   .btn-show-com {
