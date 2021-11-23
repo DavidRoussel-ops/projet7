@@ -70,10 +70,4 @@ Dans le fichier `.env` entrez vos informations de connexion
 * Dans le terminal placez-vous sur le dossier frontend et installer Vue client avec la commande `npm install -g @vue/cli`  
 * Installer ensuite le dossier avec `npm install`
 * Démarrer le serveur front avec la commande `npm run serve`
-
-## Note de securité
-
-Pour une question de securité la totalité du code de l'application n'est pas disponible.  
-Pour plus d'information veuillez contacter le responsable projet à cette adresse  
-contact.stephanie-groupomania@gmail.com.
   
