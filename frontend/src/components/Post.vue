@@ -128,7 +128,80 @@ export default {
 
 }
 
-@media screen and (max-width: 1300px) {
+@media (min-width: 701px) and (max-width: 1299px){
+
+  .post {
+    position: absolute;
+    width: 70%;
+    height: 250px;
+    left: 25%;
+    top: 3%;
+  }
+
+  .new-post {
+    position: fixed;
+    background-color: #EEEEEE;
+    border: 1px solid black;
+    width: 70%;
+    height: 250px;
+    border-radius: 20px;
+  }
+
+  .btn-stop-post {
+    border-radius: 50%;
+    color: white;
+    background-color: red;
+    position: absolute;
+    left: 90%;
+    top: 5%;
+  }
+
+  .input-post-com {
+    position: absolute;
+    left: 5%;
+    top: 30%;
+    width: 90%;
+    height: 20px;
+    border-radius: 20px;
+  }
+
+  .btn-choice {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+  }
+
+  .btn-post {
+    background-color: royalblue;
+    color: white;
+    border-radius: 20px;
+    position: absolute;
+    left: 15%;
+    top: 70%;
+    width: 70%;
+    height: 50px;
+    font-size: 30px;
+  }
+
+  .fas {
+    margin: 0;
+  }
+
+  .fa-comment {
+    position: fixed;
+    padding: 20px;
+    background-color: #FD7014;
+    border: 1px solid #222831;
+    color: #222831;
+    border-radius: 50%;
+    left: 85%;
+    top: 2%;
+    font-size: 30px;
+  }
+
+}
+
+@media screen and (max-width: 700px) {
 
   .post {
     position: absolute;
