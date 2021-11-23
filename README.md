@@ -55,6 +55,7 @@ Pour importer la base données, veiller à écrire le chemin d'accès complet ou
 
 Dans le fichier `.env` entrez vos informations de connexion  
 `DB_PORT=` + votre port  
+`DB_HOST=` + votre host  
 `DB_NAME=` + le nom de votre BDD  
 `DB_USER=` + votre nom utilisateur MySQL  
 `DB_PASSWORD=` + votre mots de passe MySQL  
