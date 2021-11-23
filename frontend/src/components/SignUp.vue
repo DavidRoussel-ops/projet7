@@ -99,7 +99,7 @@ export default {
 
 }
 
-@media screen and (max-width: 1300px) {
+@media (min-width: 701px) and (max-width: 1299px){
 
   .form-sign-log {
     background-color: rgba(255, 255, 255, 0.5);
@@ -108,7 +108,7 @@ export default {
     top: 10%;
     left: 10%;
     width: 80%;
-    height: 60%;
+    height: 80%;
   }
 
   .form-sign {
@@ -123,7 +123,6 @@ export default {
     border-radius: 20px;
     width: 100%;
     height: 20px;
-    margin-bottom: 10px;
   }
 
   .btn-sign-log {
@@ -139,6 +138,52 @@ export default {
     bottom: 0;
     display: block;
     margin: 450px auto 0;
+    text-align: center;
+    width: 80%;
+    color: #222831;
+  }
+
+}
+
+@media screen and (max-width: 700px) {
+
+  .form-sign-log {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+  }
+
+  .form-sign {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 20%;
+    left: 10%;
+  }
+
+  .input {
+    border-radius: 20px;
+    width: 100%;
+    height: 20px;
+  }
+
+  .btn-sign-log {
+    position: absolute;
+    border-radius: 20px;
+    width: 80%;
+    height: 30px;
+    left: 10%;
+    background-color: white;
+  }
+
+  .info {
+    bottom: 0;
+    display: block;
+    margin: 410px auto 0;
     text-align: center;
     width: 80%;
     color: #222831;
