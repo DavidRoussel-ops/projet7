@@ -62,7 +62,8 @@ Dans le fichier `.env` entrez vos informations de connexion
 
 ### Serveur backend
 
-* Dans le terminal placez-vous sur le dossier backend et installer avec la commande.`npm install`  
+* Dans le terminal placez-vous sur le dossier backend et installer avec la commande.`npm install`
+* Importer la base de donnée `groupomania.sql`
 * Démarrer le serveur backend avec la commande `node server.js`
 
 ### Serveur frontend
